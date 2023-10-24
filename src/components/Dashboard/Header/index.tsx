@@ -22,10 +22,13 @@ const Header = () => {
                 </div>
             </section>
             <div className={styles['avatar-wrapper']}>
-                <img
-                    src="https://api.dicebear.com/7.x/fun-emoji/svg"
-                    alt="Avatar"
-                />
+                <a href="#">
+                    <img
+                        src="https://api.dicebear.com/7.x/fun-emoji/svg"
+                        alt="Avatar"
+                    />
+                    <span>Avatar</span>
+                </a>
             </div>
         </header>
     );
