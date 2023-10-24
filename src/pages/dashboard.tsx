@@ -1,14 +1,16 @@
 import { defaultOptions } from '@/animation';
+import DashboardLayout from '@/layouts/DashboardLayout';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { XCircle } from 'phosphor-react';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
 import styles from '../styles/Login.module.scss';
+import { NextPageWithLayout } from './_app';
 
-export default function Login() {
+const Dashboard: NextPageWithLayout = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -103,4 +105,10 @@ export default function Login() {
             </div>
         </div>
     );
-}
+};
+
+Dashboard.getLayout = function getLayout(page: ReactElement) {
+    return <DashboardLayout>{page}</DashboardLayout>;
+};
+
+export default Dashboard;
