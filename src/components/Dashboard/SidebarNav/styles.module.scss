@@ -31,6 +31,25 @@
 
             &:last-child {
                 margin-top: auto;
+                margin-bottom: 1.25rem;
+
+                .nav-link {
+                    position: relative;
+                    justify-content: center;
+
+                    &::before {
+                        position: absolute;
+                        top: -0.5rem;
+                        left: -200%;
+                        display: block;
+                        content: '';
+                        background-color: var(--white-500);
+                        opacity: 0;
+                        transition: var(--transition-speed);
+                        height: 1px;
+                        width: calc(100% - 2rem);
+                    }
+                }
             }
 
             &.active {
@@ -44,7 +63,6 @@
         }
 
         .nav-link {
-            position: relative;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -60,12 +78,11 @@
             }
 
             .link-text {
-                position: absolute;
-                left: 3rem;
+                width: max-content;
+                min-width: max-content;
                 display: none;
                 size: 1rem;
                 line-height: 1;
-                width: max-content;
             }
 
             .icon-wrapper {
@@ -93,10 +110,8 @@
             height: 4rem;
 
             .nav-link {
-                position: absolute;
+                justify-content: center;
                 padding: 0.9rem;
-                left: 0;
-                transform: translateX(0);
             }
 
             svg {
@@ -107,10 +122,8 @@
             }
 
             .logo-text {
-                position: relative;
                 display: none;
-                margin-left: 0;
-                left: 0;
+                color: var(--yellow-500);
             }
         }
     }
@@ -151,15 +164,20 @@
                 display: inline !important;
             }
 
-            .logo {
-                .nav-link {
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-            }
-
             .logo-text {
                 display: inline !important;
+            }
+
+            .nav-item {
+                &:last-child {
+                    .nav-link {
+                        &::before {
+                            left: 50%;
+                            transform: translateX(-50%);
+                            opacity: 0.1;
+                        }
+                    }
+                }
             }
         }
     }

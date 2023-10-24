@@ -55,7 +55,7 @@ const SidebarNav = () => {
     return (
         <nav className={styles.sidebarNav}>
             <ul className={styles['navbar-nav']}>
-                {buttons.map((button) => (
+                {buttons.map((button, index) => (
                     <li
                         className={`${
                             button.isLogo ? styles.logo : styles['nav-item']
@@ -63,17 +63,39 @@ const SidebarNav = () => {
                         key={button.label}
                     >
                         <a href="#" className={styles['nav-link']}>
-                            <div className={styles['icon-wrapper']}>
-                                {button.icon}
-                            </div>
+                            {index < buttons.length - 1 ? (
+                                <>
+                                    <div className={styles['icon-wrapper']}>
+                                        {button.icon}
+                                    </div>
 
-                            <span
-                                className={`${styles['link-text']} ${
-                                    button.isLogo ? styles['logo-text'] : ''
-                                }`}
-                            >
-                                {button.label}
-                            </span>
+                                    <span
+                                        className={`${styles['link-text']} ${
+                                            button.isLogo
+                                                ? styles['logo-text']
+                                                : ''
+                                        }`}
+                                    >
+                                        {button.label}
+                                    </span>
+                                </>
+                            ) : (
+                                <>
+                                    <span
+                                        className={`${styles['link-text']} ${
+                                            button.isLogo
+                                                ? styles['logo-text']
+                                                : ''
+                                        }`}
+                                    >
+                                        {button.label}
+                                    </span>
+
+                                    <div className={styles['icon-wrapper']}>
+                                        {button.icon}
+                                    </div>
+                                </>
+                            )}
                         </a>
                     </li>
                 ))}
