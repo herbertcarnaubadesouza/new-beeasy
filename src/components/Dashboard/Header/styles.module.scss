@@ -1,2 +1,79 @@
 .header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+
+    padding: 0.5rem 2rem;
+    gap: 2.5rem;
+
+    a {
+        text-decoration: none;
+        color: var(--yellow-500);
+        font-family: 'Outfit', sans-serif;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        outline: none;
+        background-color: transparent;
+        letter-spacing: 1px;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+    }
+
+    section {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+
+        .money-section {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            text-transform: uppercase;
+            font-family: 'Outfit', sans-serif;
+            font-style: normal;
+            line-height: normal;
+
+            --red: #ef4f4f;
+            --green: #b0ff73;
+
+            span {
+                font-size: 0.625rem;
+                font-weight: 400;
+                opacity: 0.6;
+                color: var(--white-500);
+            }
+            p {
+                font-size: 1rem;
+                font-weight: 600;
+
+                &.red {
+                    color: var(--red);
+                }
+
+                &.green {
+                    color: var(--green);
+                }
+            }
+        }
+    }
+
+    .avatar-wrapper {
+        width: 2.5rem;
+        aspect-ratio: 1/1;
+        display: grid;
+        place-items: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
 }

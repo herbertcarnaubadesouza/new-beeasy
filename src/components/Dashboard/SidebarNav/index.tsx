@@ -7,6 +7,7 @@ import PackageIcon from '@/components/Icons/PackageIcon';
 import StorefrontIcon from '@/components/Icons/StorefrontIcon';
 import TicketIcon from '@/components/Icons/TicketIcon';
 import UserIcon from '@/components/Icons/UserIcon';
+import { Exo } from 'next/font/google';
 import styles from './styles.module.scss';
 
 const buttons = [
@@ -51,6 +52,11 @@ const buttons = [
     },
 ];
 
+const exoFont = Exo({
+    weight: '400',
+    subsets: ['latin-ext'],
+});
+
 const SidebarNav = () => {
     return (
         <nav className={styles.sidebarNav}>
@@ -72,7 +78,7 @@ const SidebarNav = () => {
                                     <span
                                         className={`${styles['link-text']} ${
                                             button.isLogo
-                                                ? styles['logo-text']
+                                                ? `${styles['logo-text']} ${exoFont.className}`
                                                 : ''
                                         }`}
                                     >
@@ -84,7 +90,7 @@ const SidebarNav = () => {
                                     <span
                                         className={`${styles['link-text']} ${
                                             button.isLogo
-                                                ? styles['logo-text']
+                                                ? `${styles['logo-text']} ${exoFont.className}`
                                                 : ''
                                         }`}
                                     >
