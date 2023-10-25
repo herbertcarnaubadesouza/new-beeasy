@@ -1,4 +1,5 @@
 import MainSection from '@/components/MainSection';
+import Steps from '@/components/Steps';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -41,7 +42,9 @@ const Dashboard: NextPageWithLayout = () => {
             title="Passo a passo"
             description="Siga o passo a passo para lançar sua loja"
         >
-            <p>Teste</p>
+            <Steps>
+                <p>Teste</p>
+            </Steps>
         </MainSection>
     );
 };
