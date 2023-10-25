@@ -1,30 +1,95 @@
+import FloppyDiskIcon from '@/Icons/FloppyDiskIcon';
 import { ReactElement, useCallback, useState } from 'react';
+import StepContent from './StepContent';
 import styles from './styles.module.scss';
 
-const steps = [
+export interface StepData {
+    id: string;
+    title: string;
+    description?: string;
+    nextStepAction?: {
+        label: string;
+        onClick: () => void;
+    };
+    content: ReactElement | string | number;
+    actions: {
+        label: string;
+        variant?: 'primary' | 'secondary' | 'dark';
+        icon?: ReactElement;
+        onClick?: () => void;
+    }[];
+}
+
+const steps: StepData[] = [
     {
         id: 'create-store',
         title: 'Criar loja',
+        description: 'Customize sua loja',
         content:
             'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        actions: [
+            {
+                label: 'Cancelar',
+            },
+            {
+                label: 'Salvar',
+                variant: 'secondary',
+                icon: <FloppyDiskIcon />,
+            },
+        ],
     },
     {
-        id: 'customize-store',
-        title: 'Customizar loja',
+        id: 'create-products',
+        title: 'Criar produtos',
+        description: 'Crie os produtos do catálogo da sua loja',
         content:
             'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        actions: [
+            {
+                label: 'Cancelar',
+            },
+            {
+                label: 'Salvar',
+                variant: 'secondary',
+                icon: <FloppyDiskIcon />,
+            },
+        ],
     },
     {
         id: 'activate-integrations',
-        title: 'Ativar integrações',
+        title: 'Ativar integrações (opcional)',
+        description:
+            'Caso você já tenha uma loja virtual, você já pode ativar integrações de diversos parceiros em sua loja.',
+        nextStepAction: {
+            label: 'Pular passo',
+            onClick: () => {},
+        },
         content:
             'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        actions: [
+            {
+                label: 'Cancelar',
+            },
+            {
+                label: 'Salvar',
+                variant: 'secondary',
+                icon: <FloppyDiskIcon />,
+            },
+        ],
     },
     {
         id: 'finish-register',
         title: 'Finalizar Cadastro',
+        description: 'Complete seus dados de cadastro',
         content:
             'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        actions: [
+            {
+                label: 'Finalizar',
+                variant: 'secondary',
+                icon: <FloppyDiskIcon />,
+            },
+        ],
     },
 ];
 
@@ -36,7 +101,7 @@ const Steps = ({ children }: { children: ReactElement }) => {
     }, []);
 
     return (
-        <section className={styles.container}>
+        <div className={styles.container}>
             <nav>
                 <ul className={styles.menu}>
                     {steps.map((step, index) => (
@@ -63,21 +128,21 @@ const Steps = ({ children }: { children: ReactElement }) => {
 
             <div className={styles.content}>
                 <ul>
-                    {steps.map((step, index) => (
+                    {steps.map((step) => (
                         <li
                             key={step.id}
                             className={
                                 step.id === activeStep ? styles.active : ''
                             }
                         >
-                            <div className={styles['step-content']}>
+                            <StepContent step={step}>
                                 <p>{step.content}</p>
-                            </div>
+                            </StepContent>
                         </li>
                     ))}
                 </ul>
             </div>
-        </section>
+        </div>
     );
 };
 

@@ -77,7 +77,7 @@
                     font-weight: inherit;
 
                     &:hover {
-                        filter: brightness(0.7);
+                        filter: brightness(0.8);
                         box-shadow: none;
 
                         & + li {
@@ -101,6 +101,8 @@
     }
 
     .content {
+        width: 100%;
+
         ul {
             position: relative;
             height: 0px;
@@ -111,10 +113,12 @@
                 cubic-bezier(0.075, 0.82, 0.165, 1);
 
             li {
-                opacity: 0;
-                transform: translateX(50px);
                 position: absolute;
+                width: 100%;
+                transform: translateX(50px);
                 list-style: none;
+                opacity: 0;
+
                 transition: var(--transition-speed) all
                     cubic-bezier(0.075, 0.82, 0.165, 1);
 
@@ -123,10 +127,6 @@
                     z-index: 2;
                     opacity: 1;
                     transform: translateX(0px);
-                }
-
-                p {
-                    margin: 0;
                 }
             }
         }
