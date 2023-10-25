@@ -12,7 +12,7 @@ export default function DashboardLayout({
         <div className={styles.container}>
             <Header />
             <SidebarNav />
-            <main>{children}</main>
+            {children}
         </div>
     );
 }

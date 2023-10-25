@@ -1,13 +1,10 @@
-import { defaultOptions } from '@/animation';
+import MainSection from '@/components/MainSection';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { XCircle } from 'phosphor-react';
 import { ReactElement, useState } from 'react';
-import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
-import styles from '../styles/Login.module.scss';
 import { NextPageWithLayout } from './_app';
 
 const Dashboard: NextPageWithLayout = () => {
@@ -40,70 +37,12 @@ const Dashboard: NextPageWithLayout = () => {
     };
 
     return (
-        <div className={styles.Container}>
-            <div className={styles.ImageContainer}>
-                <img className={styles.logo} src="/logoBeasy.svg" alt="logo" />
-                <div className={styles.Social}>
-                    <img src="facebook.svg" alt="facebook" />
-                    <img src="instagram.svg" alt="instagram" />
-                    <img src="twitter.svg" alt="twitter" />
-                </div>
-            </div>
-            <div className={styles.LoginContainer}>
-                <div className={styles.Login}>
-                    <p className={styles.title}>Login</p>
-                    <p className={styles.subtitle}>
-                        Informe seu acesso para entrar
-                    </p>
-
-                    <p className={styles.label}>Email</p>
-                    <input
-                        id="email"
-                        className={styles.field}
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-
-                    <p className={styles.label}>Senha</p>
-                    <input
-                        id="senha"
-                        className={styles.field}
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-
-                    <Link href="/recuperar" className={styles.forget}>
-                        Esqueci minha senha
-                    </Link>
-
-                    <button onClick={handleLogin} className={styles.button}>
-                        {isLoading ? (
-                            /*@ts-ignore*/
-                            <Lottie
-                                options={defaultOptions}
-                                height={40}
-                                width={50}
-                            />
-                        ) : (
-                            'Entrar'
-                        )}
-                    </button>
-
-                    <div className={styles.linha}></div>
-
-                    <div className={styles.sign}>
-                        <p className={styles.signNew}>
-                            Ainda não tem uma conta?{' '}
-                        </p>
-                        <Link href="/create" className={styles.create}>
-                            Criar
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <MainSection
+            title="Passo a passo"
+            description="Siga o passo a passo para lançar sua loja"
+        >
+            <p>Teste</p>
+        </MainSection>
     );
 };
 
