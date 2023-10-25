@@ -10,7 +10,7 @@
     position: fixed;
     background-color: var(--black-500);
     transition: width 600ms ease;
-    overflow: scroll;
+    overflow: hidden;
 
     .navbar-nav {
         list-style: none;
