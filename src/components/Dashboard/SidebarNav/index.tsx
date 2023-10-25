@@ -1,12 +1,12 @@
-import BeeasyIcon from '@/components/Icons/BeeasyIcon';
-import CreditCardIcon from '@/components/Icons/CreditCardIcon';
-import HelpIcon from '@/components/Icons/HelpIcon';
-import HomeIcon from '@/components/Icons/HomeIcon';
-import LogoutIcon from '@/components/Icons/LogoutIcon';
-import PackageIcon from '@/components/Icons/PackageIcon';
-import StorefrontIcon from '@/components/Icons/StorefrontIcon';
-import TicketIcon from '@/components/Icons/TicketIcon';
-import UserIcon from '@/components/Icons/UserIcon';
+import BeeasyIcon from '@/Icons/BeeasyIcon';
+import CreditCardIcon from '@/Icons/CreditCardIcon';
+import HelpIcon from '@/Icons/HelpIcon';
+import HomeIcon from '@/Icons/HomeIcon';
+import LogoutIcon from '@/Icons/LogoutIcon';
+import PackageIcon from '@/Icons/PackageIcon';
+import StorefrontIcon from '@/Icons/StorefrontIcon';
+import TicketIcon from '@/Icons/TicketIcon';
+import UserIcon from '@/Icons/UserIcon';
 import { Exo } from 'next/font/google';
 import styles from './styles.module.scss';
 
