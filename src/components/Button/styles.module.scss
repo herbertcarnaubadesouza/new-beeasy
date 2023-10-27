@@ -42,10 +42,17 @@
         border: none;
     }
 
-    &[data-variant='dark']:hover {
+    &[data-variant='dark'] {
         background-color: var(--bg-dark);
         color: var(--text-secondary);
         border: none;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:focus-within {
+            filter: brightness(0.7);
+        }
     }
 
     svg {

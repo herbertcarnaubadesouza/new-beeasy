@@ -1,0 +1,21 @@
+.step-wrapper {
+    display: grid;
+    grid-template-columns: minmax(208px, min-content) 1fr;
+    grid-gap: 2rem;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1.5rem;
+        align-items: center;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

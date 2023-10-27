@@ -1,5 +1,6 @@
 import FloppyDiskIcon from '@/Icons/FloppyDiskIcon';
 import { ReactElement, useCallback, useState } from 'react';
+import CreateStoreStep from './SetupStore/CreateStoreStep';
 import StepContent from './StepContent';
 import styles from './styles.module.scss';
 
@@ -11,7 +12,7 @@ export interface StepData {
         label: string;
         onClick: () => void;
     };
-    content: ReactElement | string | number;
+    content: ReactElement;
     actions: {
         label: string;
         variant?: 'primary' | 'secondary' | 'dark';
@@ -25,8 +26,7 @@ const steps: StepData[] = [
         id: 'create-store',
         title: 'Criar loja',
         description: 'Customize sua loja',
-        content:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        content: <CreateStoreStep />,
         actions: [
             {
                 label: 'Cancelar',
@@ -42,8 +42,14 @@ const steps: StepData[] = [
         id: 'create-products',
         title: 'Criar produtos',
         description: 'Crie os produtos do catálogo da sua loja',
-        content:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        content: (
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Laudantium quos dolore molestias facere odio voluptatum eveniet
+                minima soluta laborum impedit cumque laboriosam, ea non optio
+                ut. Delectus maiores minima iusto.
+            </p>
+        ),
         actions: [
             {
                 label: 'Cancelar',
@@ -64,8 +70,14 @@ const steps: StepData[] = [
             label: 'Pular passo',
             onClick: () => {},
         },
-        content:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        content: (
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Laudantium quos dolore molestias facere odio voluptatum eveniet
+                minima soluta laborum impedit cumque laboriosam, ea non optio
+                ut. Delectus maiores minima iusto.
+            </p>
+        ),
         actions: [
             {
                 label: 'Cancelar',
@@ -81,8 +93,14 @@ const steps: StepData[] = [
         id: 'finish-register',
         title: 'Finalizar Cadastro',
         description: 'Complete seus dados de cadastro',
-        content:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium quos dolore molestias facere odio voluptatum eveniet minima soluta laborum impedit cumque laboriosam, ea non optio ut. Delectus maiores minima iusto.',
+        content: (
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Laudantium quos dolore molestias facere odio voluptatum eveniet
+                minima soluta laborum impedit cumque laboriosam, ea non optio
+                ut. Delectus maiores minima iusto.
+            </p>
+        ),
         actions: [
             {
                 label: 'Finalizar',
@@ -136,7 +154,7 @@ const Steps = ({ children }: { children: ReactElement }) => {
                             }
                         >
                             <StepContent step={step}>
-                                <p>{step.content}</p>
+                                {step.content}
                             </StepContent>
                         </li>
                     ))}
