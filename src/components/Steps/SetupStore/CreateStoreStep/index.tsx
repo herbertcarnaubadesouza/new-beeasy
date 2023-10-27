@@ -1,5 +1,5 @@
 import MagicWangIcon from '@/Icons/MagicWandIcon';
-import Button from '@/components/Button';
+import Button from '@/components/Buttons/Button';
 import ImageInput from '@/components/Inputs/ImageInput';
 import Input from '@/components/Inputs/Input';
 import { useState } from 'react';

@@ -1,0 +1,38 @@
+.card-button {
+    display: flex;
+    flex-direction: column;
+    width: 8rem;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+
+    .icon-wrapper {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        aspect-ratio: 1/1;
+        background-color: rgba(247, 2, 147, 0.15);
+        border-radius: 8px;
+
+        svg {
+            width: 2.625rem;
+        }
+        img {
+            width: 3.25rem;
+        }
+    }
+
+    span {
+        color: var(--pink-500);
+        font-family: 'Outfit';
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    &[data-hide-label='true'] {
+        span {
+            display: none;
+        }
+    }
+}

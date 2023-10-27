@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/Buttons/Button';
 import { ReactElement } from 'react';
 import { StepData } from '..';
 import styles from './styles.module.scss';
