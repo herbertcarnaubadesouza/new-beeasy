@@ -1,5 +1,6 @@
 import FloppyDiskIcon from '@/Icons/FloppyDiskIcon';
 import { ReactElement, useCallback, useState } from 'react';
+import ActivateIntegrationsStep from './SetupStore/ActivateIntegrationsStep';
 import CreateProductsStep from './SetupStore/CreateProductsStep';
 import CreateStoreStep from './SetupStore/CreateStoreStep';
 import StepContent from './StepContent';
@@ -18,6 +19,7 @@ export interface StepData {
         label: string;
         variant?: 'primary' | 'secondary' | 'dark';
         icon?: ReactElement;
+        disabled?: boolean;
         onClick?: () => void;
     }[];
 }
@@ -51,6 +53,7 @@ const steps: StepData[] = [
             {
                 label: 'Salvar',
                 variant: 'secondary',
+                disabled: true,
                 icon: <FloppyDiskIcon />,
             },
         ],
@@ -64,14 +67,7 @@ const steps: StepData[] = [
             label: 'Pular passo',
             onClick: () => {},
         },
-        content: (
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Laudantium quos dolore molestias facere odio voluptatum eveniet
-                minima soluta laborum impedit cumque laboriosam, ea non optio
-                ut. Delectus maiores minima iusto.
-            </p>
-        ),
+        content: <ActivateIntegrationsStep />,
         actions: [
             {
                 label: 'Cancelar',
@@ -79,6 +75,7 @@ const steps: StepData[] = [
             {
                 label: 'Salvar',
                 variant: 'secondary',
+                disabled: true,
                 icon: <FloppyDiskIcon />,
             },
         ],

@@ -1,4 +1,6 @@
 .card-button {
+    --transition-speed: 400ms;
+
     display: flex;
     flex-direction: column;
     width: 8rem;
@@ -6,6 +8,19 @@
     padding: 0;
     margin: 0;
     background: transparent;
+    transition: var(--transition-speed);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:focus-within {
+        filter: brightness(0.6);
+        outline: none;
+    }
+
+    &:disabled {
+        opacity: 0.3;
+    }
 
     .icon-wrapper {
         display: grid;

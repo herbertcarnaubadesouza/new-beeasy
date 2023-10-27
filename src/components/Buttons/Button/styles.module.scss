@@ -36,6 +36,10 @@
         outline: none;
     }
 
+    &:disabled {
+        opacity: 0.3;
+    }
+
     &[data-variant='secondary'] {
         background-color: var(--bg-secondary);
         color: var(--text-secondary);

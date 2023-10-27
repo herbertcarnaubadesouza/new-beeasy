@@ -37,6 +37,7 @@ const StepContent = ({
                         label={action.label}
                         icon={action.icon}
                         variant={action.variant}
+                        disabled={action.disabled}
                         onClick={action.onClick}
                     />
                 ))}
