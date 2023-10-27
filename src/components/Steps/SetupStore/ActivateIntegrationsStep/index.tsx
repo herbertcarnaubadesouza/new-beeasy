@@ -34,7 +34,7 @@ const integrations = [
 const ActivateIntegrationsStep = () => {
     return (
         <div className={styles['step-wrapper']}>
-            <div className={styles['integrations-container']}>
+            <div className={styles['buttons-container']}>
                 {integrations.map((integration) => (
                     <CardButton
                         key={integration.id}

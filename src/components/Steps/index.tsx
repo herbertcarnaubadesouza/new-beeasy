@@ -3,6 +3,7 @@ import { ReactElement, useCallback, useState } from 'react';
 import ActivateIntegrationsStep from './SetupStore/ActivateIntegrationsStep';
 import CreateProductsStep from './SetupStore/CreateProductsStep';
 import CreateStoreStep from './SetupStore/CreateStoreStep';
+import FinishRegisterStep from './SetupStore/FinishRegisterStep';
 import StepContent from './StepContent';
 import styles from './styles.module.scss';
 
@@ -84,14 +85,7 @@ const steps: StepData[] = [
         id: 'finish-register',
         title: 'Finalizar Cadastro',
         description: 'Complete seus dados de cadastro',
-        content: (
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Laudantium quos dolore molestias facere odio voluptatum eveniet
-                minima soluta laborum impedit cumque laboriosam, ea non optio
-                ut. Delectus maiores minima iusto.
-            </p>
-        ),
+        content: <FinishRegisterStep />,
         actions: [
             {
                 label: 'Finalizar',

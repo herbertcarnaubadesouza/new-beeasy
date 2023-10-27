@@ -3,12 +3,13 @@
 
     display: flex;
     flex-direction: column;
-    width: 8rem;
+    width: fit-content;
     gap: 1rem;
     padding: 0;
     margin: 0;
     background: transparent;
     transition: var(--transition-speed);
+    align-items: center;
 
     &:hover,
     &:focus,
@@ -25,7 +26,7 @@
     .icon-wrapper {
         display: grid;
         place-items: center;
-        width: 100%;
+        width: 8rem;
         aspect-ratio: 1/1;
         background-color: rgba(247, 2, 147, 0.15);
         border-radius: 8px;

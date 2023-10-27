@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 const CreateProductsStep = () => {
     return (
         <div className={styles['step-wrapper']}>
-            <div className={styles['products-container']}>
+            <div className={styles['buttons-container']}>
                 <CardButton
                     label="Adicionar produto"
                     icon={<PlusIcon color="#F70293" />}
