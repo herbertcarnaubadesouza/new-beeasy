@@ -6,11 +6,13 @@ import { useRouter } from 'next/router';
 import { XCircle } from 'phosphor-react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import styles from '../styles/Login.module.scss';
+import styles from '../styles/CriarConta.module.scss';
 
-export default function Login() {
+export default function CriarConta() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
@@ -39,21 +41,22 @@ export default function Login() {
 
     return (
         <div className={styles.Container}>
-            <div className={styles.ImageContainer}>
-                <img className={styles.logo} src="/logoBeasy.svg" alt="logo" />
-                <div className={styles.Social}>
-                    <img src="facebook.svg" alt="facebook" />
-                    <img src="instagram.svg" alt="instagram" />
-                    <img src="twitter.svg" alt="twitter" />
-                </div>
-            </div>
             <div className={styles.LoginContainer}>
                 <div className={styles.Login}>
                     <div className={styles['input-container']}>
-                        <p className={styles.title}>Login</p>
+                        <p className={styles.title}>Criar conta</p>
                         <p className={styles.subtitle}>
-                            Informe seu acesso para entrar
+                            Preencha abaixo para criar conta
                         </p>
+
+                        <Input
+                            id="nome"
+                            label="Seu nome"
+                            className={styles.field}
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
 
                         <Input
                             id="email"
@@ -65,7 +68,7 @@ export default function Login() {
                         />
 
                         <Input
-                            id="senha"
+                            id="password"
                             label="Senha"
                             className={styles.field}
                             type="password"
@@ -73,12 +76,17 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
 
-                        <Link href="/recuperar" className={styles.forget}>
-                            Esqueci minha senha
-                        </Link>
+                        <Input
+                            id="confirm-password"
+                            label="Confirmar senha"
+                            className={styles.field}
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
 
                         <Button
-                            label="Entrar"
+                            label="Criar conta"
                             variant="secondary"
                             className={styles.button}
                             isLoading={isLoading}
@@ -94,6 +102,14 @@ export default function Login() {
                             Criar
                         </Link>
                     </div>
+                </div>
+            </div>
+            <div className={styles.ImageContainer}>
+                <img className={styles.logo} src="/logoBeasy.svg" alt="logo" />
+                <div className={styles.Social}>
+                    <img src="facebook.svg" alt="facebook" />
+                    <img src="instagram.svg" alt="instagram" />
+                    <img src="twitter.svg" alt="twitter" />
                 </div>
             </div>
         </div>

@@ -1,0 +1,173 @@
+.Container {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.ImageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: space-between;
+    padding-left: 40px;
+    background-position: center;
+    background-image: url('/loginBeeasy.png');
+}
+
+.LoginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    min-height: 100vh;
+    flex-direction: column;
+    padding-block: 8rem;
+    height: 100%;
+
+    @media only screen and (min-width: 1440px) {
+        margin-right: max(0px, (100% - 1440px)/2);
+        min-height: 512px;
+    }
+
+    .input-container {
+        max-width: 448px;
+    }
+}
+
+.Login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sign {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    padding-top: 1.5rem;
+
+    box-shadow: 0 -1px 0 0 #ececf0;
+}
+
+.logo {
+    margin-top: 36px;
+    margin-left: 47px;
+    height: 150.43px;
+    width: 189.7px;
+
+    @media only screen and (min-width: 1440px) {
+        margin-left: max(0px, (100% - 750px)/2);
+    }
+}
+
+.Social {
+    display: flex;
+    flex-direction: row;
+    margin-left: 47px;
+    gap: 24px;
+    margin-bottom: 3.75rem;
+
+    @media only screen and (min-width: 1440px) {
+        margin-left: max(0px, (100% - 750px)/2);
+    }
+}
+
+.title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: medium;
+    color: #000;
+    margin-bottom: 32px;
+}
+
+.label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: medium;
+    color: #000;
+    margin-bottom: 6px;
+}
+
+.forget {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: medium;
+    color: #000;
+    margin-bottom: 4.5rem;
+}
+
+.field {
+    width: 27.6em;
+    height: 2.7rem;
+    padding-left: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: solid 1px;
+    border-color: #4040492d;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #404049;
+}
+
+.button {
+    width: 442px;
+    margin-top: 70px;
+    margin-bottom: 66px;
+    cursor: pointer;
+}
+
+.signNew {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: medium;
+    color: #000;
+}
+
+.create {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    text-decoration: underline;
+    font-weight: medium;
+    color: #f70293;
+}
+
+.erro {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ff0000;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .Container {
+        grid-template-columns: 1fr;
+    }
+    .LoginContainer {
+        flex-direction: row;
+
+        .Login {
+            margin: 0 auto;
+        }
+    }
+}
