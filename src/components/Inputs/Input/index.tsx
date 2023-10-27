@@ -1,11 +1,9 @@
+import { InputHTMLAttributes } from 'react';
 import styles from './styles.module.scss';
 
-interface InputProps {
-    type?: string;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
-    placeholder?: string;
     value: string;
-    required?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -16,6 +14,8 @@ const Input = ({
     value,
     required = false,
     onChange,
+    className,
+    ...props
 }: InputProps) => {
     return (
         <div className={styles.inputContainer}>
@@ -24,11 +24,12 @@ const Input = ({
             </label>
             <input
                 type={type}
-                className={styles.inputElement}
+                className={`${styles.inputElement} ${className}`}
                 placeholder={placeholder}
                 value={value}
                 required={required}
                 onChange={onChange}
+                {...props}
             />
         </div>
     );
