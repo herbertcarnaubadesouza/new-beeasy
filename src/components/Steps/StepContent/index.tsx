@@ -18,15 +18,18 @@ const StepContent = ({
                     <p>{step.description}</p>
                 </div>
                 {step.nextStepAction && (
-                    <button
-                        className={styles['btn-link']}
+                    <Button
+                        label={step.nextStepAction.label}
+                        variant={
+                            step.nextStepAction.type === 'button'
+                                ? 'primary'
+                                : 'link'
+                        }
                         onClick={(e) => {
                             e.preventDefault();
                             step.nextStepAction?.onClick();
                         }}
-                    >
-                        {step.nextStepAction.label}
-                    </button>
+                    />
                 )}
             </header>
             <section>{children}</section>

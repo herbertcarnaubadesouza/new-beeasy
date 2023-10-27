@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     label: string;
     icon?: ReactElement;
-    variant?: 'primary' | 'secondary' | 'dark';
+    variant?: 'primary' | 'secondary' | 'dark' | 'link';
 }
 
 const Button = ({

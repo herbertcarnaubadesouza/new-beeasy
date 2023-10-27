@@ -13,6 +13,7 @@ export interface StepData {
     description?: string;
     nextStepAction?: {
         label: string;
+        type: 'button' | 'link';
         onClick: () => void;
     };
     content: ReactElement;
@@ -30,6 +31,11 @@ const steps: StepData[] = [
         id: 'create-store',
         title: 'Criar loja',
         description: 'Customize sua loja',
+        nextStepAction: {
+            label: 'Personalizar loja',
+            type: 'button',
+            onClick: () => {},
+        },
         content: <CreateStoreStep />,
         actions: [
             {
@@ -65,7 +71,8 @@ const steps: StepData[] = [
         description:
             'Caso você já tenha uma loja virtual, você já pode ativar integrações de diversos parceiros em sua loja.',
         nextStepAction: {
-            label: 'Pular passo',
+            label: 'Pular passo opcional',
+            type: 'link',
             onClick: () => {},
         },
         content: <ActivateIntegrationsStep />,
@@ -85,6 +92,11 @@ const steps: StepData[] = [
         id: 'finish-register',
         title: 'Finalizar Cadastro',
         description: 'Complete seus dados de cadastro',
+        nextStepAction: {
+            label: 'Pular passo opcional',
+            type: 'link',
+            onClick: () => {},
+        },
         content: <FinishRegisterStep />,
         actions: [
             {
