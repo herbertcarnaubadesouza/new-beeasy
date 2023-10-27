@@ -23,7 +23,7 @@ const CreateStoreStep = () => {
     return (
         <div className={styles['step-wrapper']}>
             <ImageInput />
-            <div>
+            <div className={styles['input-container']}>
                 <div className={styles['input-group']}>
                     <Input
                         label="Nome da loja"

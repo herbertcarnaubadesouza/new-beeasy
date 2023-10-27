@@ -2,8 +2,7 @@
 
 .inputContainer {
     --transition-speed: 400ms;
-
-    margin-bottom: 16px;
+    max-width: 480px;
 
     .inputLabel {
         display: block;
