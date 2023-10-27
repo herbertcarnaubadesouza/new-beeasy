@@ -95,11 +95,9 @@ export default function CriarConta() {
                     </div>
 
                     <div className={styles.sign}>
-                        <p className={styles.signNew}>
-                            Ainda não tem uma conta?{' '}
-                        </p>
+                        <p className={styles.signNew}>Já possui uma conta? </p>
                         <Link href="/criar-conta" className={styles.create}>
-                            Criar
+                            Fazer login
                         </Link>
                     </div>
                 </div>
