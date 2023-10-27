@@ -49,33 +49,35 @@ export default function Login() {
             </div>
             <div className={styles.LoginContainer}>
                 <div className={styles.Login}>
-                    <p className={styles.title}>Recuperar senha</p>
-                    <p className={styles.subtitle}>
-                        Informe seu email de cadastro
-                    </p>
+                    <div className={styles['input-container']}>
+                        <p className={styles.title}>Recuperar senha</p>
+                        <p className={styles.subtitle}>
+                            Informe seu email de cadastro
+                        </p>
 
-                    <Input
-                        id="email"
-                        label="Email"
-                        className={styles.field}
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                        <Input
+                            id="email"
+                            label="Email"
+                            className={styles.field}
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                    <Button
-                        label="Enviar link de recuperação"
-                        variant="secondary"
-                        className={styles.button}
-                        isLoading={isLoading}
-                        onClick={handleLogin}
-                    />
-                </div>
+                        <Button
+                            label="Enviar link de recuperação"
+                            variant="secondary"
+                            className={styles.button}
+                            isLoading={isLoading}
+                            onClick={handleLogin}
+                        />
+                    </div>
 
-                <div className={styles.sign}>
-                    <Link href="/" className={styles.create}>
-                        Voltar ao login
-                    </Link>
+                    <div className={styles.sign}>
+                        <Link href="/" className={styles.create}>
+                            Voltar ao login
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

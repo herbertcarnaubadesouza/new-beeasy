@@ -1,10 +1,10 @@
-import { defaultOptions } from '@/animation';
+import Button from '@/components/Buttons/Button';
+import Input from '@/components/Inputs/Input';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { XCircle } from 'phosphor-react';
 import { useState } from 'react';
-import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
 import styles from '../styles/Login.module.scss';
 
@@ -49,47 +49,42 @@ export default function Login() {
             </div>
             <div className={styles.LoginContainer}>
                 <div className={styles.Login}>
-                    <p className={styles.title}>Login</p>
-                    <p className={styles.subtitle}>
-                        Informe seu acesso para entrar
-                    </p>
+                    <div className={styles['input-container']}>
+                        <p className={styles.title}>Login</p>
+                        <p className={styles.subtitle}>
+                            Informe seu acesso para entrar
+                        </p>
 
-                    <p className={styles.label}>Email</p>
-                    <input
-                        id="email"
-                        className={styles.field}
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                        <Input
+                            id="email"
+                            label="Email"
+                            className={styles.field}
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                    <p className={styles.label}>Senha</p>
-                    <input
-                        id="senha"
-                        className={styles.field}
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                        <Input
+                            id="senha"
+                            label="Senha"
+                            className={styles.field}
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                    <Link href="/recuperar" className={styles.forget}>
-                        Esqueci minha senha
-                    </Link>
+                        <Link href="/recuperar" className={styles.forget}>
+                            Esqueci minha senha
+                        </Link>
 
-                    <button onClick={handleLogin} className={styles.button}>
-                        {isLoading ? (
-                            /*@ts-ignore*/
-                            <Lottie
-                                options={defaultOptions}
-                                height={40}
-                                width={50}
-                            />
-                        ) : (
-                            'Entrar'
-                        )}
-                    </button>
-
-                    <div className={styles.linha}></div>
+                        <Button
+                            label="Entrar"
+                            variant="secondary"
+                            className={styles.button}
+                            isLoading={isLoading}
+                            onClick={handleLogin}
+                        />
+                    </div>
 
                     <div className={styles.sign}>
                         <p className={styles.signNew}>
