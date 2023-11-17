@@ -11,6 +11,7 @@
     background-color: var(--black-500);
     transition: width 600ms ease;
     overflow: hidden;
+    z-index: 1000;
 
     .navbar-nav {
         list-style: none;

@@ -1,22 +1,24 @@
 import DownArrowIcon from '@/Icons/DownArrowIcon';
 import UpArrowIcon from '@/Icons/UpArrowIcon';
+import { formatPercentage } from '@/utils/format/number';
+import { HTMLAttributes } from 'react';
 import styles from './styles.module.scss';
 
-const formatPercentage = (value: number) => {
-    return value.toLocaleString('pt-BR', {
-        style: 'percent',
-    });
-};
-
-interface DashboardCardProps {
+interface InfoCardProps extends HTMLAttributes<HTMLDivElement> {
     title: string;
     value: number;
     spread: number;
 }
 
-const DashboardCard = ({ title, value, spread }: DashboardCardProps) => {
+const InfoCard = ({ title, value, spread, className }: InfoCardProps) => {
     return (
-        <section className={styles['card-container']}>
+        <section
+            className={
+                className
+                    ? `${styles['card-container']} ${className}`
+                    : styles['card-container']
+            }
+        >
             <h4 className={styles.title}>{title}</h4>
             <p className={styles.value}>{value}</p>
             <div className={styles['data-container']}>
@@ -33,4 +35,4 @@ const DashboardCard = ({ title, value, spread }: DashboardCardProps) => {
     );
 };
 
-export default DashboardCard;
+export default InfoCard;

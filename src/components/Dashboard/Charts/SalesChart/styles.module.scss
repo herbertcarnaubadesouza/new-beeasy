@@ -1,0 +1,82 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+
+    ul,
+    ul li,
+    ul li {
+        margin: 0;
+        padding: 0;
+        text-indent: 0;
+        list-style: none;
+    }
+
+    li {
+        --legend-width: 14px;
+        --legend-height: 4px;
+        --legend-margin: 10px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 2.5px;
+
+        span {
+            display: block;
+            color: rgba(2, 53, 53, 0.9);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.264rem;
+            font-weight: 500;
+            letter-spacing: -0.02525rem;
+        }
+
+        p {
+            position: relative;
+            display: block;
+            margin-left: calc(var(--legend-width) + var(--legend-margin));
+            color: #2c2c2c;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: -0.01769rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: calc(-1 * (var(--legend-width) + var(--legend-margin)));
+                width: var(--legend-width);
+                height: var(--legend-height);
+                background-color: var(--color);
+            }
+        }
+    }
+
+    .chart-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        h3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0;
+            margin: 0;
+            z-index: 1;
+
+            color: rgba(2, 53, 53, 0.9);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.45rem;
+            font-weight: 500;
+            letter-spacing: -0.049rem;
+        }
+
+        :global([role='dialog']) {
+            z-index: 10;
+        }
+    }
+}

@@ -1,11 +1,5 @@
+import { formatCurrency } from '@/utils/format/number';
 import styles from './styles.module.scss';
-
-const formatMoney = (value: number) => {
-    return value.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    });
-};
 
 const Header = () => {
     return (
@@ -14,11 +8,11 @@ const Header = () => {
             <section>
                 <div className={styles['money-section']}>
                     <span>A liberar</span>
-                    <p className={styles['red']}>{formatMoney(856)}</p>
+                    <p className={styles['red']}>{formatCurrency(856)}</p>
                 </div>
                 <div className={styles['money-section']}>
                     <span>Disponível</span>
-                    <p className={styles['green']}>{formatMoney(3254)}</p>
+                    <p className={styles['green']}>{formatCurrency(3254)}</p>
                 </div>
             </section>
             <div className={styles['avatar-wrapper']}>

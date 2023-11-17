@@ -1,0 +1,28 @@
+.content-grid {
+    display: grid;
+    grid-template-areas:
+        'infoCards volumeChart'
+        'conversionCharts conversionCharts';
+    gap: 2rem;
+
+    .info-cards {
+        grid-area: infoCards;
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 1.35rem;
+    }
+
+    .volume-chart {
+        grid-area: volumeChart;
+    }
+
+    .conversion-charts {
+        grid-area: conversionCharts;
+        display: flex;
+        gap: 2rem;
+
+        & > * {
+            flex: 1;
+        }
+    }
+}

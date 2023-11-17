@@ -6,14 +6,14 @@ export default function UpArrowIcon({ color = '#3CFCA0' }: IconProps) {
             <path
                 d="M11.7445 4.2748V0.702637H8.17236"
                 stroke={color}
-                stroke-width="1.33956"
-                stroke-linecap="square"
+                strokeWidth="1.33956"
+                strokeLinecap="square"
             />
             <path
                 d="M1.32471 7.25136L4.40228 3.53036L7.33327 5.31644L11.4458 1"
                 stroke={color}
-                stroke-width="1.33956"
-                stroke-linecap="square"
+                strokeWidth="1.33956"
+                strokeLinecap="square"
             />
         </svg>
     );

@@ -1,0 +1,77 @@
+.chart-container {
+    background-color: var(--white-500);
+    box-shadow: 0px 4.5px 8.93px 0px rgba(44, 44, 44, 0.15);
+
+    h2 {
+        color: var(--black-500);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: -0.02rem;
+        padding: 1.25rem 2rem;
+        box-shadow: 0px 1px 0px 0px rgba(242, 242, 242, 1);
+    }
+
+    .chart {
+        min-height: 320px;
+        display: flex;
+        padding: 5rem 2rem;
+
+        & > * {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+        }
+    }
+}
+
+.tooltip {
+    --triangle-height: 11px;
+    --triangle-width: 14px;
+    --bg-color: var(--black-500);
+
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-content: center;
+    gap: 8px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: -0.01594rem;
+
+    position: relative;
+    background-color: var(--bg-color);
+
+    &::after {
+        display: none;
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: calc(var(--triangle-height) * -1);
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: calc(var(--triangle-width) / 2) solid transparent;
+        border-right: calc(var(--triangle-width) / 2) solid transparent;
+
+        border-top: var(--triangle-height) solid var(--bg-color);
+    }
+
+    p:first-child {
+        color: rgba(226, 248, 243, 0.67);
+        font-weight: 400;
+    }
+
+    p:last-child {
+        color: var(--white-500);
+        font-weight: 500;
+    }
+
+    .divider {
+        display: block;
+        height: auto;
+        width: 1px;
+        background-color: rgba(226, 248, 243, 0.67);
+    }
+}
