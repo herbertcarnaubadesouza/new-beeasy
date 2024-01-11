@@ -1,81 +1,85 @@
 .button {
-    --bg-primary: var(--white-500);
-    --bg-secondary: var(--pink-500);
-    --bg-dark: var(--black-500);
-    --text-primary: var(--black-500);
-    --text-secondary: var(--white-500);
-    --border-color: rgba(28, 26, 29, 0.6);
-    --transition-speed: 400ms;
+  --bg-primary: var(--white-500);
+  --bg-secondary: var(--pink-500);
+  --bg-dark: var(--black-500);
+  --text-primary: var(--black-500);
+  --text-secondary: var(--white-500);
+  --border-color: rgba(28, 26, 29, 0.6);
+  --transition-speed: 400ms;
 
-    min-width: 256px;
-    max-width: 480px;
-    height: 48px;
-    padding: 1rem;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
+  min-width: 256px;
+  max-width: 480px;
+  height: 48px;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
 
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-primary);
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
 
-    color: var(--text-primary);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 3.85;
-    transition: var(--transition-speed);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 3.85;
+  transition: var(--transition-speed);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-within {
+    filter: brightness(0.8);
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+
+  &[data-variant='secondary'] {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: none;
+  }
+  &[data-variant='excluir'] {
+    background-color: #ee4f4f;
+    color: var(--text-secondary);
+    border: none;
+  }
+  &[data-variant='dark'] {
+    background-color: var(--bg-dark);
+    color: var(--text-secondary);
+    border: none;
 
     &:hover,
     &:focus,
     &:active,
     &:focus-within {
-        filter: brightness(0.8);
-        outline: none;
+      filter: brightness(0.7);
     }
+  }
 
-    &:disabled {
-        opacity: 0.3;
-    }
+  &[data-variant='link'] {
+    padding: 0.5rem 0;
+    margin: 0;
+    color: var(--pink-500);
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    height: 2.5rem;
+    min-width: auto;
+  }
 
-    &[data-variant='secondary'] {
-        background-color: var(--bg-secondary);
-        color: var(--text-secondary);
-        border: none;
-    }
-
-    &[data-variant='dark'] {
-        background-color: var(--bg-dark);
-        color: var(--text-secondary);
-        border: none;
-
-        &:hover,
-        &:focus,
-        &:active,
-        &:focus-within {
-            filter: brightness(0.7);
-        }
-    }
-
-    &[data-variant='link'] {
-        padding: 0.5rem 0;
-        margin: 0;
-        color: var(--pink-500);
-        text-align: right;
-        font-size: 1rem;
-        font-weight: 500;
-        border-radius: 0;
-        background-color: transparent;
-        border: none;
-        height: 2.5rem;
-        min-width: auto;
-    }
-
-    svg {
-        width: 1.5rem;
-        aspect-ratio: 1/1;
-    }
+  svg {
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+  }
 }

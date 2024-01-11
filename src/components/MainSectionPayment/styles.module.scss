@@ -1,0 +1,52 @@
+.container {
+  padding: 3.5rem 2.5rem 5rem;
+  background-color: var(--off-white-500);
+  overflow-y: auto;
+  color: var(--black-300);
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  overflow-x: hidden;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+
+.leftside {
+  width: 100%;
+  min-width: 550px;
+}
+.compra {
+  border-radius: 10px;
+  opacity: 0.87;
+  background: #f70293;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  max-height: 40px;
+  max-width: 186px;
+  color: #fff;
+
+  font-family: Outfit;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+}

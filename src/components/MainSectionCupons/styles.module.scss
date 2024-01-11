@@ -1,0 +1,133 @@
+.container {
+  padding: 3.5rem 2.5rem 5rem;
+  background-color: var(--off-white-500);
+  overflow-y: auto;
+  color: var(--black-300);
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  overflow-x: hidden;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+
+  .tableContainer {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    border-radius: 8px;
+
+    border: 1px solid #dfe0df;
+    margin-top: 1rem;
+
+    .tableFullWidth {
+      grid-column: 1/-1;
+      place-self: center;
+      border-right: none !important;
+    }
+
+    .tableHeader,
+    .tableRow {
+      display: contents;
+      width: 100%;
+    }
+    .tableHeader {
+      p {
+        background-color: var(--brand-black, #1c1c1c);
+        color: white;
+        width: 100%;
+        display: grid;
+        align-items: center;
+        border-top: none !important;
+
+        b {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    p:not(:nth-child(4)) {
+      border-right: 1px solid #dfe0df;
+    }
+    p {
+      padding: 0.7rem 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #50525f;
+      border-top: 1px solid #dfe0df;
+    }
+  }
+
+  .rowIcons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px solid #dfe0df;
+
+    img {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .button {
+    button {
+      border-radius: 5px;
+      background: #f70293;
+      width: 100%;
+      min-width: 258px;
+      min-height: 48px;
+      color: #fff;
+
+      font-family: DM Sans;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 700;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+.pagination {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+  justify-content: flex-end;
+  p {
+    color: #000;
+  }
+}
+
+.buttonArrow {
+  background: #f3f3f3 !important;
+  padding-block: 5px;
+  padding-inline: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}

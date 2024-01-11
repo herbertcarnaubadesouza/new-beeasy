@@ -1,0 +1,102 @@
+.container {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background: #1c1a1d;
+  padding-inline: 20px;
+  margin-top: 56px;
+  padding-block: 67px 27px;
+}
+.content {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+}
+.valor {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  h1 {
+    color: var(--brand-gold-light, #fff301);
+    font-family: Montserrat;
+    font-size: 2.63075rem;
+    font-style: normal;
+    font-weight: 700;
+  }
+  p {
+    color: var(--white, #fff);
+    font-family: Poppins;
+    font-size: 1.24231rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+}
+.title {
+  margin-top: 18px;
+  h1 {
+    color: #fff301;
+
+    font-family: Syne;
+    font-size: 2.04613rem;
+    font-style: normal;
+    font-weight: 700;
+  }
+}
+.undertitle {
+  margin-top: 18px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  p {
+    color: #fff;
+
+    font-family: Poppins;
+    font-size: 1.09613rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+  ul {
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  li {
+    color: #fff;
+
+    font-family: Poppins;
+    font-size: 1.09613rem;
+    font-style: normal;
+    font-weight: 400;
+    list-style-type: none;
+    margin-left: 20px;
+  }
+  li:before {
+    content: ''; /* Adiciona um conteúdo antes do li (pseudoelemento) */
+    display: inline-block; /* Permite que a imagem seja exibida corretamente */
+    width: 16px; /* A largura da sua imagem */
+    height: 16px; /* A altura da sua imagem */
+    background: url('checkcircle.svg') no-repeat center center; /* Caminho para a sua imagem */
+    background-size: cover; /* Garante que a imagem cubra todo o espaço especificado */
+    margin-right: 10px; /* Espaçamento à direita da imagem (opcional) */
+  }
+}
+.button {
+  margin-top: 26px;
+
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  button {
+    width: 100%;
+    min-width: 250px;
+    height: 52.615px;
+    border-radius: 28.062px;
+    background: #322f1a;
+    border: none;
+    color: var(--brand-gold-light, #fff301);
+    text-align: center;
+    font-family: Syne;
+    font-size: 1.09613rem;
+    font-style: normal;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,14 @@
+.inputgroup {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+
+  input {
+    width: 100%;
+  }
+}
+.inputcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

@@ -1,0 +1,75 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+
+    .image-upload-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 195/211;
+        border-radius: 0.25rem;
+        background: var(--off-white-500);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        svg {
+            width: 3rem;
+        }
+    }
+
+    input {
+        display: none;
+    }
+
+    button {
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        color: var(--pink-500);
+        font-family: 'Outfit';
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration-line: underline;
+    }
+
+    .clear-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        z-index: 100;
+        align-items: flex-start;
+        justify-content: flex-end;
+        overflow: hidden;
+        transition: 0.4s;
+        border-radius: 100vw;
+
+        button {
+            width: 2rem;
+            height: 2rem;
+            padding: 0.25rem;
+            border-radius: 100vw;
+        }
+
+        svg {
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+
+        span {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.card {
+  display: flex;
+}
+.label {
+  text-decoration: underline;
+  color: var(--brand-black, #1c1c1c);
+
+  font-family: DM Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cancel {
+  justify-content: center;
+  display: flex;
+  padding-block: 50px;
+}

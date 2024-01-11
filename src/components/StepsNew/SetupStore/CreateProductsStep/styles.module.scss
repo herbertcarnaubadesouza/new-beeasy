@@ -1,0 +1,32 @@
+.step-wrapper {
+    display: grid;
+    grid-template-columns: minmax(208px, min-content) 1fr;
+    grid-gap: 2rem;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 7.5rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+
+    .buttons-container {
+    }
+
+    .help-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        button {
+            max-width: 256px;
+        }
+
+        color: var(--black-500);
+        font-family: 'Outfit';
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 5.5rem;
+    }
+}

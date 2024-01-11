@@ -1,0 +1,36 @@
+.container {
+  background-color: #f70293;
+  border-radius: 18px;
+
+  padding-inline: 30px;
+
+  max-width: 785px;
+}
+.content {
+  display: flex;
+  gap: 120px;
+  padding-block: 45px;
+}
+.current,
+.date,
+.situation {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  color: var(--white, #fff);
+  font-family: Outfit;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+}
+.type {
+  color: var(--white, #fff);
+
+  font-family: DM Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+}

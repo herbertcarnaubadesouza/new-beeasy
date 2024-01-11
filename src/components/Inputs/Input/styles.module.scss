@@ -1,46 +1,46 @@
 // styles.module.scss
 
 .inputContainer {
-    --transition-speed: 400ms;
-    max-width: 480px;
+  --transition-speed: 400ms;
 
-    .inputLabel {
-        display: block;
-        margin-bottom: 6px;
-        color: var(--black-300);
-        font-family: 'Outfit';
-        font-size: 0.875rem;
-        font-weight: 500;
+  width: 100%;
+  .inputLabel {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--black-300);
+    font-family: 'Outfit';
+    font-size: 0.875rem;
+    font-weight: 500;
 
-        &[data-required='true'] {
-            &::after {
-                content: '*';
-                margin-left: 0.5ch;
-                color: var(--pink-500);
-            }
-        }
+    &[data-required='true'] {
+      &::after {
+        content: '*';
+        margin-left: 0.5ch;
+        color: var(--pink-500);
+      }
     }
+  }
 
-    .inputElement {
-        width: 100%;
-        padding: 1rem;
+  .inputElement {
+    width: 100%;
+    padding: 1rem;
 
-        color: var(--black-300);
-        font-family: 'DM Sans';
-        font-size: 1rem;
-        font-weight: 400;
+    color: var(--black-300);
+    font-family: 'DM Sans';
+    font-size: 1rem;
+    font-weight: 400;
 
-        border-radius: 5px;
-        border: 1px solid rgba(64, 64, 73, 0.3);
-        background: var(--white-500);
-        outline: none;
-        transition: var(--transition-speed);
+    border-radius: 5px;
+    border: 1px solid rgba(64, 64, 73, 0.3);
+    background: var(--white-500);
+    outline: none;
+    transition: var(--transition-speed);
 
-        &:focus,
-        &:hover,
-        &:active,
-        &:focus-visible {
-            border-color: var(--pink-500);
-        }
+    &:focus,
+    &:hover,
+    &:active,
+    &:focus-visible {
+      border-color: var(--pink-500);
     }
+  }
 }
