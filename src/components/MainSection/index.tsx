@@ -1,12 +1,18 @@
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 interface MainSectionProps {
   title: string;
   description?: string;
   children?: React.ReactNode;
+  onButtonClick?: () => void;
 }
 
-const MainSection = ({ title, description, children }: MainSectionProps) => {
+const MainSection: React.FC<MainSectionProps> = ({
+  title,
+  description,
+  onButtonClick,
+  children,
+}) => {
   return (
     <main className={styles.container}>
       <div className={styles.titleWrapper}>

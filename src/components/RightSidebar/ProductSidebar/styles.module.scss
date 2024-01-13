@@ -1,0 +1,215 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Ensure this is below the sidebar z-index */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  background: #1c1c1c;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 16px;
+  padding-block: 10px;
+  h2 {
+    color: #fff;
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 40px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 40px;
+  p {
+    color: #404049;
+    font-family: Outfit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+  }
+  input {
+    border-radius: 5px;
+    border: 1px solid rgba(64, 64, 73, 0.3);
+    background: #fff;
+    padding: 16px;
+    &::placeholder {
+      color: #404049;
+      font-family: Outfit;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 16px;
+  p {
+    color: #404049;
+    font-family: Outfit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+  }
+  textarea {
+    padding: 16px;
+    border-radius: 5px;
+    border: 1px solid rgba(64, 64, 73, 0.3);
+    background: #fff;
+    min-height: 120px;
+    p {
+      overflow: hidden;
+      color: #404049;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: Outfit;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  p {
+    color: #404049;
+    font-family: Outfit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.colors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row1,
+.row2,
+.row3 {
+  display: flex;
+  gap: 16px;
+}
+
+.tags,
+.profit,
+.total {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+  gap: 6px;
+  p {
+    color: #404049;
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  input {
+    padding: 16px;
+    border-radius: 5px;
+    border: 1px solid rgba(64, 64, 73, 0.3);
+    background: #fff;
+  }
+}
+.total {
+  input {
+    background: #dcd5d5;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-top: 86px;
+}
+.addButton {
+  border-radius: 5px;
+  background: #f70293;
+  color: #fff;
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 16px;
+}
+
+.cancelButton {
+  border-radius: 5px;
+  border: 1px solid #222;
+  color: #222;
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 16px;
+}
+
+// components/MyButton.module.scss
+.myButton {
+  background-color: #ff00ff; // Use the color picker to match the color from your image
+  border: none;
+  border-radius: 50%; // Adjust if needed to match the roundness
+  padding: 10px; // Adjust the padding to match the size
+  color: white; // Choose a text color that matches your design
+  font-size: 16px; // Adjust the font size as needed
+  cursor: pointer;
+  outline: none;
+
+  // Add any other styles like shadows or hover effects
+  &:hover {
+    background-color: darken(
+      #ff00ff,
+      10%
+    ); // Darken on hover, adjust the percentage as needed
+  }
+}

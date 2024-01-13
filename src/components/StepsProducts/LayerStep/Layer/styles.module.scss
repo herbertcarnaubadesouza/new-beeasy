@@ -1,0 +1,27 @@
+.layerContainer {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  background: #fbfbfe;
+}
+
+.layerContent {
+  display: flex;
+  padding-inline: 16px;
+  align-items: center;
+  padding-block: 16px;
+  justify-content: space-between;
+}
+
+.leftside {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.sixDots {
+  cursor: grab;
+}
+
+.close {
+  cursor: pointer;
+}

@@ -1,0 +1,53 @@
+// components/MyButton.module.scss
+.switchContainer {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  min-width: 50px; // Adjust the width as needed
+  min-height: 25px; // Adjust the height as needed
+  background-color: white; // Default background
+  border-radius: 50px; // Fully rounded ends
+  position: relative;
+  border: 2px solid #ccc; // Border color
+  padding: 0px;
+  transition: background-color 0.2s;
+
+  &:active .circle {
+    width: 22px; // slightly bigger circle on click
+  }
+}
+
+.circle {
+  min-width: 20px; // Circle size
+  min-height: 20px;
+  background-color: #ff00ff; // Circle color
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  // Circle start position
+  transform: translateY(-48%);
+  transition: left 0.2s, background-color 0.2s;
+}
+
+.on {
+  background-color: #0000ff; // Background color when toggled on
+
+  .circle {
+    left: calc(100% - 20px); // Move circle to the right
+    background-color: white; // Circle color when toggled on
+  }
+}
+
+.staticCircle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+
+  border: 2px solid #f70293;
+
+  margin-left: 10px;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

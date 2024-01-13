@@ -1,0 +1,104 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  padding-inline: 40px;
+  /* Ensure this is below the sidebar z-index */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100vh;
+  background: #f2f3f8;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  background: #1c1c1c;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 16px;
+  padding-block: 10px;
+  p {
+    color: #fff;
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.title {
+  margin-bottom: 24px;
+  padding-inline: 23px;
+  margin-top: 24px;
+}
+
+.requisitesList {
+  list-style: none;
+  gap: 2px;
+  padding-inline: 23px;
+}
+
+.apiKeyContainer {
+  margin-top: 48px;
+  padding-inline: 23px;
+}
+
+.apiKeyLabel {
+  display: block;
+  font-weight: 500;
+}
+
+.apiKeyInput {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.buttonsContainer {
+  margin-top: 122px;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 23px;
+}
+
+.submitButton,
+.cancelButton {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.submitButton {
+  background-color: magenta; /* Use the actual color you prefer */
+  color: white;
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: magenta; /* Use the actual color you prefer */
+}

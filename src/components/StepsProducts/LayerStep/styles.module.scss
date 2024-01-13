@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Arial&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Diplomata&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Erica+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Globin+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arial&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Diplomata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Erica+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Globin+One&display=swap");
 
 .content {
   display: flex;
   gap: 30px;
-  justify-content: center;
+  justify-content: left;
 }
 
 .leftside {
   min-width: 400px;
-  gap: 20px;
+
   display: flex;
   flex-direction: column;
 }
@@ -71,4 +71,24 @@
 .radiocontent {
   display: flex;
   gap: 16px;
+}
+
+// Assuming .rightside and .layerImage are already defined elsewhere in your SCSS.
+.rightside {
+  position: relative; // Ensure this is positioned relatively for absolute children
+}
+
+.layerImage {
+  position: absolute;
+}
+
+.layerText {
+  position: absolute;
+  color: #fff;
+
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
 }
