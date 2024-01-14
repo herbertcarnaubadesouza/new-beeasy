@@ -42,13 +42,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
             <label htmlFor="api-key" className={styles.apiKeyLabel}>
               Chave da API
             </label>
-            <input
-              type="text"
-              id="api-key"
-              value={apiKey}
-              readOnly
-              className={styles.apiKeyInput}
-            />
+            <input type="text" className={styles.apiKeyInput} />
           </div>
           <div className={styles.buttonsContainer}>
             <button onClick={onSubmit} className={styles.submitButton}>

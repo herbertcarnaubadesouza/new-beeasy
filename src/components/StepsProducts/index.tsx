@@ -1,6 +1,6 @@
-import { ReactElement, ReactNode, useCallback, useState } from 'react';
-import StepContent from './StepContent';
-import styles from './styles.module.scss';
+import { ReactElement, ReactNode, useCallback, useState } from "react";
+import StepContent from "./StepContent";
+import styles from "./styles.module.scss";
 
 export interface StepData {
   id: string;
@@ -8,13 +8,13 @@ export interface StepData {
   description?: string;
   nextStepAction?: {
     label: string;
-    type: 'button' | 'link';
+    type: "button" | "link";
     onClick: () => void;
   };
   content: ReactElement;
   actions: {
     label: string;
-    variant?: 'primary' | 'secondary' | 'dark' | 'excluir';
+    variant?: "primary" | "secondary" | "dark" | "excluir";
     icon?: ReactElement;
     disabled?: boolean;
     onClick?: () => void;
@@ -24,20 +24,16 @@ export interface StepData {
 interface StepsProps {
   steps: StepData[];
   children: ReactNode;
+  activeStep: string; // Added prop for the active step id
+  onStepChange: (stepId: string) => void;
 }
 
-const Steps = ({ steps, children }: StepsProps) => {
-  const [activeStep, setActiveStep] = useState(steps[0].id);
-
+const Steps = ({ steps, children, activeStep, onStepChange }: StepsProps) => {
   // Define image names for active and inactive steps
   const imageNames = {
-    active: ['Box.svg', 'Imagem.svg', 'Texto.svg', 'Camadas.svg'],
-    inactive: ['BoxB.svg', 'ImagemB.svg', 'TextoB.svg', 'CamadasB.svg'],
+    active: ["Box.svg", "Imagem.svg", "Texto.svg", "Camadas.svg"],
+    inactive: ["BoxB.svg", "ImagemB.svg", "TextoB.svg", "CamadasB.svg"],
   };
-
-  const handleStepClick = useCallback((stepId: string) => {
-    setActiveStep(stepId);
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -46,19 +42,19 @@ const Steps = ({ steps, children }: StepsProps) => {
           {steps.map((step, index) => (
             <li
               key={step.id}
-              className={step.id === activeStep ? styles.active : ''}
+              className={step.id === activeStep ? styles.active : ""}
             >
               <button
                 disabled={step.id === activeStep}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleStepClick(step.id);
+                  onStepChange(step.id); // Use the onStepChange prop to set active step
                 }}
               >
                 <span className={styles.stepImage}>
                   <img
                     src={`/${
-                      activeStep === step.id
+                      step.id === activeStep
                         ? imageNames.active[index]
                         : imageNames.inactive[index]
                     }`}
@@ -78,7 +74,7 @@ const Steps = ({ steps, children }: StepsProps) => {
           {steps.map((step) => (
             <li
               key={step.id}
-              className={step.id === activeStep ? styles.active : ''}
+              className={step.id === activeStep ? styles.active : ""}
             >
               <StepContent step={step}>{step.content}</StepContent>
             </li>

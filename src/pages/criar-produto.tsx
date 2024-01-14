@@ -15,24 +15,28 @@ import TextStep from "@/components/StepsProducts/TextStep";
 import LayerStep from "@/components/StepsProducts/LayerStep";
 import PlusIcon from "@/Icons/PlusIcon";
 import RightSidebar2 from "@/components/RightSidebar/ProductSidebar";
+import ActivateIntegrationsStep from "@/components/StepsProducts/ImageSelect";
 
 const CriarLoja: NextPageWithLayout = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [activeStep, setActiveStep] = useState("create-store");
 
-  const goToNextStep = () => {
-    if (currentStepIndex < steps.length - 1) {
-      setCurrentStepIndex(currentStepIndex + 1);
+  const handleNextStep = () => {
+    const currentStepIndex = steps.findIndex((step) => step.id === activeStep);
+    const nextStepIndex = currentStepIndex + 1;
+    if (nextStepIndex < steps.length) {
+      setActiveStep(steps[nextStepIndex].id);
     }
   };
 
-  // Function to go to the previous step
-  const goToPreviousStep = () => {
-    if (currentStepIndex > 0) {
-      setCurrentStepIndex(currentStepIndex - 1);
+  const handlePreviousStep = () => {
+    const currentStepIndex = steps.findIndex((step) => step.id === activeStep);
+    const previousStepIndex = currentStepIndex - 1;
+    if (previousStepIndex >= 0) {
+      setActiveStep(steps[previousStepIndex].id);
     }
   };
 
@@ -79,13 +83,12 @@ const CriarLoja: NextPageWithLayout = () => {
       actions: [
         {
           label: "Cancelar",
-          onClick: goToPreviousStep,
         },
         {
           label: "Próximo",
           variant: "secondary",
           icon: <FloppyDiskIcon />,
-          onClick: goToNextStep,
+          onClick: handleNextStep,
         },
       ],
     },
@@ -102,12 +105,13 @@ const CriarLoja: NextPageWithLayout = () => {
       actions: [
         {
           label: "Cancelar",
+          onClick: handlePreviousStep,
         },
         {
           label: "Próximo",
           variant: "secondary",
-
           icon: <FloppyDiskIcon />,
+          onClick: handleNextStep,
         },
       ],
     },
@@ -120,12 +124,13 @@ const CriarLoja: NextPageWithLayout = () => {
       actions: [
         {
           label: "Cancelar",
+          onClick: handlePreviousStep,
         },
         {
           label: "Próximo",
           variant: "secondary",
-
           icon: <FloppyDiskIcon />,
+          onClick: handleNextStep,
         },
       ],
     },
@@ -138,6 +143,7 @@ const CriarLoja: NextPageWithLayout = () => {
       actions: [
         {
           label: "Cancelar",
+          onClick: handlePreviousStep,
           variant: "primary",
         },
         {
@@ -160,7 +166,11 @@ const CriarLoja: NextPageWithLayout = () => {
         />
       )}
       <MainSection title="Criar produto">
-        <Steps steps={steps}>
+        <Steps
+          steps={steps}
+          activeStep={activeStep}
+          onStepChange={setActiveStep}
+        >
           <p>Teste</p>
         </Steps>
       </MainSection>

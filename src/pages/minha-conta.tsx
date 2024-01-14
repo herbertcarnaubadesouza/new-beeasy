@@ -43,11 +43,7 @@ const steps: StepData[] = [
     id: "create-products",
     title: "Loja",
     description: "Altere as informações da sua loja",
-    nextStepAction: {
-      label: "Personalizar loja",
-      type: "button",
-      onClick: () => {},
-    },
+
     content: <Loja />,
     actions: [
       {
