@@ -1,11 +1,11 @@
-import FloppyDiskIcon from '@/Icons/FloppyDiskIcon';
-import { ReactElement, ReactNode, useCallback, useState } from 'react';
-import ActivateIntegrationsStep from './SetupStore/ActivateIntegrationsStep';
-import CreateProductsStep from './SetupStore/CreateProductsStep';
-import CreateStoreStep from './SetupStore/CreateStoreStep';
-import FinishRegisterStep from './SetupStore/FinishRegisterStep';
-import StepContent from './StepContent';
-import styles from './styles.module.scss';
+import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
+import { ReactElement, ReactNode, useCallback, useState } from "react";
+import ActivateIntegrationsStep from "./SetupStore/ActivateIntegrationsStep";
+import CreateProductsStep from "./SetupStore/CreateProductsStep";
+import CreateStoreStep from "./SetupStore/CreateStoreStep";
+import FinishRegisterStep from "./SetupStore/FinishRegisterStep";
+import StepContent from "./StepContent";
+import styles from "./styles.module.scss";
 
 export interface StepData {
   id: string;
@@ -13,14 +13,14 @@ export interface StepData {
   description?: string;
   nextStepAction?: {
     label: string;
-    type: 'button' | 'link';
+    type: "button" | "link";
     onClick: () => void;
   };
   content: ReactElement;
 
   actions: {
     label: string;
-    variant?: 'primary' | 'secondary' | 'dark';
+    variant?: "primary" | "secondary" | "dark";
     icon?: ReactElement;
     disabled?: boolean;
     onClick?: () => void;
@@ -30,15 +30,11 @@ export interface StepData {
 interface StepsProps {
   steps: StepData[];
   children: ReactNode;
+  activeStep: string;
+  onStepChange: (stepId: string) => void;
 }
 
-const Steps = ({ steps, children }: StepsProps) => {
-  const [activeStep, setActiveStep] = useState(steps[0].id);
-
-  const handleStepClick = useCallback((stepId: string) => {
-    setActiveStep(stepId);
-  }, []);
-
+const Steps = ({ steps, children, activeStep, onStepChange }: StepsProps) => {
   return (
     <div className={styles.container}>
       <nav>
@@ -46,13 +42,13 @@ const Steps = ({ steps, children }: StepsProps) => {
           {steps.map((step, index) => (
             <li
               key={step.id}
-              className={step.id === activeStep ? styles.active : ''}
+              className={step.id === activeStep ? styles.active : ""}
             >
               <button
                 disabled={step.id === activeStep}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleStepClick(step.id);
+                  onStepChange(step.id);
                 }}
               >
                 <span>{index + 1}</span>
@@ -68,7 +64,7 @@ const Steps = ({ steps, children }: StepsProps) => {
           {steps.map((step) => (
             <li
               key={step.id}
-              className={step.id === activeStep ? styles.active : ''}
+              className={step.id === activeStep ? styles.active : ""}
             >
               <StepContent step={step}>{step.content}</StepContent>
             </li>

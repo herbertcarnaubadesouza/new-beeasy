@@ -9,7 +9,8 @@ interface SwitchProps {
 const Switch: React.FC<SwitchProps> = ({ color }) => {
   const [isToggled, setIsToggled] = useState(false);
 
-  const toggleSwitch = () => {
+  const toggleSwitch = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // Prevent the default form submit action
     setIsToggled(!isToggled);
   };
 

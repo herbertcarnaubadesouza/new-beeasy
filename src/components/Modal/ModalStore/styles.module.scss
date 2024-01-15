@@ -1,0 +1,66 @@
+// components/SuccessModal.module.scss
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 1001px;
+  padding-inline: 228px;
+  padding-block: 64px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 25px; // Position outside the modal. Adjust value as needed.
+  right: 24px; // Position outside the modal. Adjust value as needed.
+  background: #fff; // Match your modal's background color.
+  border-radius: 50%;
+  width: 30px; // Your desired width
+  height: 30px; // Your desired height
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modalTitle {
+  padding-bottom: 37px;
+}
+
+.iconContainer {
+  padding-bottom: 69px;
+}
+
+.modalBody {
+  padding-bottom: 48px;
+}
+
+.modalFooter {
+  button {
+    border-radius: 5px;
+    padding: 16px;
+    background: #f70293;
+    width: 100%;
+    color: #fff;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+  }
+}

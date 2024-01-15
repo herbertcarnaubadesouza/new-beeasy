@@ -1,26 +1,27 @@
-import MainSection from "@/components/MainSection";
-import Steps, { StepData } from "@/components/Steps";
+import MainSection from "@/components/MainSectionCreate";
+import Steps, { StepData } from "@/components/StepsProducts";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { XCircle } from "phosphor-react";
+import { Sidebar, XCircle } from "phosphor-react";
 import { ReactElement, useState } from "react";
 import { toast } from "react-toastify";
 import { NextPageWithLayout } from "./_app";
 import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
-import ActivateIntegrationsStep from "@/components/Steps/SetupStore/ActivateIntegrationsStep";
-import CreateProductsStep from "@/components/Steps/SetupStore/CreateProductsStep";
-import CreateStoreStep from "@/components/Steps/SetupStore/CreateStoreStep";
-import FinishRegisterStep from "@/components/Steps/SetupStore/FinishRegisterStep";
-import { redirect } from "next/navigation";
-import RightSidebar from "@/components/RightSidebar";
+import DeleteAccount from "@/components/Steps/Myaccount/DeleteAccount";
+import ChooseProduct from "@/components/StepsProducts/ChooseProduct";
+import ImageSelect from "@/components/StepsProducts/ImageSelect";
+import TextStep from "@/components/StepsProducts/TextStep";
+import LayerStep from "@/components/StepsProducts/LayerStep";
+import PlusIcon from "@/Icons/PlusIcon";
+import ActivateIntegrationsStep from "@/components/StepsProducts/ImageSelect";
+import RightSidebar3 from "@/components/RightSidebar/ProductSidebar3";
 
 const CriarLoja: NextPageWithLayout = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [headerName, setHeaderName] = useState("Default Header");
   const [activeStep, setActiveStep] = useState("create-store");
 
   const handleNextStep = () => {
@@ -47,13 +48,11 @@ const CriarLoja: NextPageWithLayout = () => {
     setIsModalOpen(false);
   };
 
-  const handleIntegrationClick = (integrationName: string) => {
-    console.log("Integration clicked:", integrationName);
-    setHeaderName(integrationName);
-    setIsModalOpen(true);
-  };
-
   const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push("/criar-loja"); // Redirect to /criar-loja
+  };
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -80,21 +79,17 @@ const CriarLoja: NextPageWithLayout = () => {
   const steps: StepData[] = [
     {
       id: "create-store",
-      title: "Criar loja",
-      description: "Customize sua loja",
-      nextStepAction: {
-        label: "Personalizar loja",
-        type: "button",
-        onClick: () => {},
-      },
-      content: <CreateStoreStep />,
+      title: "Produto",
+      description: "Escolha em nosso catálogo os produtos",
+
+      content: <ChooseProduct />,
+
       actions: [
         {
           label: "Cancelar",
-          onClick: handlePreviousStep,
         },
         {
-          label: "Salvar",
+          label: "Próximo",
           variant: "secondary",
           icon: <FloppyDiskIcon />,
           onClick: handleNextStep,
@@ -103,18 +98,22 @@ const CriarLoja: NextPageWithLayout = () => {
     },
     {
       id: "create-products",
-      title: "Criar produtos",
-      description: "Crie os produtos do catálogo da sua loja",
-      content: <CreateProductsStep />,
+      title: "Imagem",
+      description: "Escolha em nosso catálogo de produtos",
+      nextStepAction: {
+        label: "Finalizar sem personalização",
+        type: "link",
+        onClick: () => {},
+      },
+      content: <ImageSelect />,
       actions: [
         {
           label: "Cancelar",
           onClick: handlePreviousStep,
         },
         {
-          label: "Salvar",
+          label: "Próximo",
           variant: "secondary",
-
           icon: <FloppyDiskIcon />,
           onClick: handleNextStep,
         },
@@ -122,30 +121,18 @@ const CriarLoja: NextPageWithLayout = () => {
     },
     {
       id: "activate-integrations",
-      title: "Ativar integrações (opcional)",
-      description:
-        "Caso você já tenha uma loja virtual, você já pode ativar integrações de diversos parceiros em sua loja.",
-      nextStepAction: {
-        label: "Pular passo opcional",
-        type: "link",
-        onClick: () => {},
-      },
-      content: (
-        <ActivateIntegrationsStep
-          onOpenModal={handleOpenModal}
-          onCloseModal={handleCloseModal}
-          onIntegrationClick={handleIntegrationClick}
-        />
-      ),
+      title: "Texto",
+      description: "Escolha em nosso catálogo os produtos",
+
+      content: <TextStep />,
       actions: [
         {
           label: "Cancelar",
           onClick: handlePreviousStep,
         },
         {
-          label: "Salvar",
+          label: "Próximo",
           variant: "secondary",
-
           icon: <FloppyDiskIcon />,
           onClick: handleNextStep,
         },
@@ -153,45 +140,36 @@ const CriarLoja: NextPageWithLayout = () => {
     },
     {
       id: "finish-register",
-      title: "Finalizar Cadastro",
-      description: "Complete seus dados de cadastro",
-      nextStepAction: {
-        label: "Pular passo opcional",
-        type: "link",
-        onClick: () => {},
-      },
-      content: <FinishRegisterStep />,
+      title: "Camadas",
+      description: "Altere, edite ou remova uma camada",
+
+      content: <LayerStep />,
       actions: [
         {
-          label: "Finalizar",
+          label: "Cancelar",
+          onClick: handlePreviousStep,
+          variant: "primary",
+        },
+        {
+          label: "Adicionar Produto",
           variant: "secondary",
           icon: <FloppyDiskIcon />,
+          onClick: handleOpenModal,
         },
       ],
     },
   ];
 
-  const openModalWithHeader = (name: string) => {
-    setHeaderName(name);
-    setIsModalOpen(true);
-  };
-
   return (
     <>
       {isModalOpen && (
-        <RightSidebar
-          apiKey="4654ad6-aw54daa654d6a-w54dwaaa"
+        <RightSidebar3
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          onSubmit={handleLogin}
-          headerName={headerName}
+          onClick={handleButtonClick}
         />
       )}
-
-      <MainSection
-        title="Passo a passo"
-        description="Siga o passo a passo para lançar sua loja"
-      >
+      <MainSection title="Criar produto">
         <Steps
           steps={steps}
           activeStep={activeStep}

@@ -1,23 +1,30 @@
 import React, { useState } from "react";
-import styles from "./styles.module.scss";
+import styles from "../ProductSidebar/styles.module.scss";
 import Switch from "@/components/Buttons/SwitchButton";
+import router, { useRouter } from "next/router";
 
-interface RightSidebar2 {
-  isOpen: boolean;
+interface RightSidebar3 {
+  isOpen: boolean; // Include this line
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit?: () => void;
   onClick?: () => void;
 }
 
-const RightSidebar2: React.FC<RightSidebar2> = ({
+const RightSidebar3: React.FC<RightSidebar3> = ({
   isOpen,
   onClose,
   onSubmit,
   onClick,
 }) => {
   const [isOn, setIsOn] = useState(false);
+  const router = useRouter();
 
   const toggleSwitch = () => setIsOn(!isOn);
+
+  const handleButtonClick = () => {
+    onClick?.();
+    router.push("/criar-loja");
+  };
 
   return (
     <>
@@ -75,7 +82,11 @@ const RightSidebar2: React.FC<RightSidebar2> = ({
           </div>
 
           <div className={styles.footer}>
-            <button type="submit" className={styles.addButton}>
+            <button
+              type="submit"
+              onClick={handleButtonClick}
+              className={styles.addButton}
+            >
               Adicionar produto
             </button>
             <button
@@ -91,4 +102,4 @@ const RightSidebar2: React.FC<RightSidebar2> = ({
     </>
   );
 };
-export default RightSidebar2;
+export default RightSidebar3;

@@ -20,85 +20,29 @@ import ChangePassword from "@/components/Steps/Myaccount/ChangePassword";
 import Loja from "@/components/Steps/Myaccount/Loja";
 import DeleteAccount from "@/components/Steps/Myaccount/DeleteAccount";
 import AccountModal from "@/components/Modal/ModalAccount";
-const steps: StepData[] = [
-  {
-    id: "create-store",
-    title: "Dados fiscais",
-    description: "Mantenha seus dados sempre atualizados",
-
-    content: <Dadosfiscais />,
-
-    actions: [
-      {
-        label: "Cancelar",
-      },
-      {
-        label: "Salvar",
-        variant: "secondary",
-        icon: <FloppyDiskIcon />,
-      },
-    ],
-  },
-  {
-    id: "create-products",
-    title: "Loja",
-    description: "Altere as informações da sua loja",
-
-    content: <Loja />,
-    actions: [
-      {
-        label: "Cancelar",
-      },
-      {
-        label: "Salvar",
-        variant: "secondary",
-        disabled: true,
-        icon: <FloppyDiskIcon />,
-      },
-    ],
-  },
-  {
-    id: "activate-integrations",
-    title: "Alterar Senha",
-    description: "Altere suas informações",
-
-    content: <ChangePassword />,
-    actions: [
-      {
-        label: "Cancelar",
-      },
-      {
-        label: "Salvar",
-        variant: "secondary",
-        disabled: true,
-        icon: <FloppyDiskIcon />,
-      },
-    ],
-  },
-  {
-    id: "finish-register",
-    title: "Excluir conta",
-    description: "Cuidado, ao informar sua senha abaixo sua conta será apagada",
-
-    content: <DeleteAccount />,
-    actions: [
-      {
-        label: "Excluir conta",
-        variant: "excluir",
-      },
-      {
-        label: "Cancelar",
-        variant: "primary",
-      },
-    ],
-  },
-];
 
 const CriarLoja: NextPageWithLayout = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeStep, setActiveStep] = useState("create-store");
+
+  const handleNextStep = () => {
+    const currentStepIndex = steps.findIndex((step) => step.id === activeStep);
+    const nextStepIndex = currentStepIndex + 1;
+    if (nextStepIndex < steps.length) {
+      setActiveStep(steps[nextStepIndex].id);
+    }
+  };
+
+  const handlePreviousStep = () => {
+    const currentStepIndex = steps.findIndex((step) => step.id === activeStep);
+    const previousStepIndex = currentStepIndex - 1;
+    if (previousStepIndex >= 0) {
+      setActiveStep(steps[previousStepIndex].id);
+    }
+  };
 
   const router = useRouter();
 
@@ -126,13 +70,93 @@ const CriarLoja: NextPageWithLayout = () => {
 
   const handleSave = async () => {
     // Logic to handle save action
-    setIsModalOpen(true); // Open the modal
-    // Other save logic...
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const steps: StepData[] = [
+    {
+      id: "create-store",
+      title: "Dados fiscais",
+      description: "Mantenha seus dados sempre atualizados",
+
+      content: <Dadosfiscais />,
+
+      actions: [
+        {
+          label: "Cancelar",
+          onClick: handlePreviousStep,
+        },
+        {
+          label: "Salvar",
+          variant: "secondary",
+          icon: <FloppyDiskIcon />,
+          onClick: handleSave,
+        },
+      ],
+    },
+    {
+      id: "create-products",
+      title: "Loja",
+      description: "Altere as informações da sua loja",
+
+      content: <Loja />,
+      actions: [
+        {
+          label: "Cancelar",
+          onClick: handlePreviousStep,
+        },
+        {
+          label: "Salvar",
+          variant: "secondary",
+
+          icon: <FloppyDiskIcon />,
+          onClick: handleNextStep,
+        },
+      ],
+    },
+    {
+      id: "activate-integrations",
+      title: "Alterar Senha",
+      description: "Altere suas informações",
+
+      content: <ChangePassword />,
+      actions: [
+        {
+          label: "Cancelar",
+          onClick: handlePreviousStep,
+        },
+        {
+          label: "Salvar",
+          variant: "secondary",
+
+          icon: <FloppyDiskIcon />,
+          onClick: handleNextStep,
+        },
+      ],
+    },
+    {
+      id: "finish-register",
+      title: "Excluir conta",
+      description:
+        "Cuidado, ao informar sua senha abaixo sua conta será apagada",
+
+      content: <DeleteAccount />,
+      actions: [
+        {
+          label: "Excluir conta",
+          variant: "excluir",
+        },
+        {
+          label: "Cancelar",
+          variant: "primary",
+        },
+      ],
+    },
+  ];
 
   return (
     <MainSection title="Minha Conta">
@@ -140,11 +164,11 @@ const CriarLoja: NextPageWithLayout = () => {
         steps={steps.map((step) => ({
           ...step,
           actions: step.actions.map((action) =>
-            action.label === "Salvar"
-              ? { ...action, onClick: handleSave }
-              : action
+            action.label === "Salvar" ? { ...action } : action
           ),
         }))}
+        activeStep={activeStep}
+        onStepChange={setActiveStep}
       >
         <p>Teste</p>
       </Steps>
