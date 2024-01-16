@@ -153,6 +153,7 @@ const CriarLoja: NextPageWithLayout = () => {
         {
           label: "Cancelar",
           variant: "primary",
+          onClick: handlePreviousStep,
         },
       ],
     },

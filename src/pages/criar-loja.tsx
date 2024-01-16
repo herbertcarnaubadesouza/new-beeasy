@@ -53,6 +53,10 @@ const CriarLoja: NextPageWithLayout = () => {
     setIsModalOpen(true);
   };
 
+  const goToDashboard = () => {
+    router.push("/dashboard");
+  };
+
   const router = useRouter();
 
   const handleLogin = async () => {
@@ -166,6 +170,7 @@ const CriarLoja: NextPageWithLayout = () => {
           label: "Finalizar",
           variant: "secondary",
           icon: <FloppyDiskIcon />,
+          onClick: goToDashboard,
         },
       ],
     },

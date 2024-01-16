@@ -106,11 +106,6 @@ export default function CriarConta() {
       </div>
       <div className={styles.ImageContainer}>
         <img className={styles.logo} src="/logoBeasy.svg" alt="logo" />
-        <div className={styles.Social}>
-          <img src="facebook.svg" alt="facebook" />
-          <img src="instagram.svg" alt="instagram" />
-          <img src="twitter.svg" alt="twitter" />
-        </div>
       </div>
     </div>
   );
