@@ -1,19 +1,70 @@
-import MagicWandIcon from '@/Icons/MagicWandIcon';
-import Button from '@/components/Buttons/Button';
-import ImageInput from '@/components/Inputs/ImageInputAlterar';
-import Input from '@/components/Inputs/Input';
-import { useState } from 'react';
+import Input from "@/components/Inputs/Input";
+import { useEffect, useState } from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
+
+type RadioOption = {
+  value: string;
+  label: string;
+  imageSrc: string;
+  category: string;
+  type: string;
+};
 
 const Dadosfiscais = () => {
-  const [Search, setSearch] = useState<string>('');
-  const [Category, setCategory] = useState<string>('');
-  const [backgroundColor, setBackgroundColor] = useState('#CDD1F9');
-  const [iconColor, setIconColor] = useState('#F70293');
-  const [selectedRadioButton, setSelectedRadioButton] =
-    useState<string>('option1');
-  const [ProductType, setProductType] = useState<string>('');
+  const [backgroundColor, setBackgroundColor] = useState("#CDD1F9");
+  const [iconColor, setIconColor] = useState("#F70293");
+  const [Search, setSearch] = useState<string>("");
+  const [Category, setCategory] = useState<string>("");
+  const [ProductType, setProductType] = useState<string>("");
+  const [filteredItems, setFilteredItems] = useState<RadioOption[]>([]);
+  const [selectedRadioButton, setSelectedRadioButton] = useState<string | null>(
+    null
+  );
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem("selectedProduct");
+    if (storedValue) {
+      setSelectedRadioButton(JSON.parse(storedValue).value);
+    }
+  }, []);
+
+  const categoryOptions = ["ANEIS", "PINGENTES", "PULSEIRAS"];
+  const productTypeOptions = ["Personalizável", "Não Personalizável"];
+
+  const radioOptions: RadioOption[] = [
+    {
+      value: "option1",
+      label: "Anel de ouro redondo",
+      imageSrc: "/Anel.svg",
+      category: "ANEIS",
+      type: "Personalizável",
+    },
+    {
+      value: "option2",
+      label: "Pulseira de ouro",
+      imageSrc: "/Pulseira.svg",
+      category: "PULSEIRAS",
+      type: "Não Personalizável",
+    },
+    {
+      value: "option3",
+      label: "Pingente de ouro",
+      imageSrc: "/Pingente.svg",
+      category: "PINGENTES",
+      type: "Personalizável",
+    },
+  ];
+
+  useEffect(() => {
+    const newFilteredItems = radioOptions.filter(
+      (option) =>
+        option.label.toLowerCase().includes(Search.toLowerCase()) &&
+        (Category === "" || option.category === Category) &&
+        (ProductType === "" || option.type === ProductType)
+    );
+    setFilteredItems(newFilteredItems);
+  }, [Search, Category, ProductType]);
 
   const handleBackgroundColorChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -39,6 +90,18 @@ const Dadosfiscais = () => {
 
   const handleRadioButtonChange = (value: string) => {
     setSelectedRadioButton(value);
+    const selectedProduct = radioOptions.find(
+      (option) => option.value === value
+    );
+    if (selectedProduct) {
+      const productToStore = {
+        name: selectedProduct.label,
+        imageSrc: selectedProduct.imageSrc,
+        category: selectedProduct.category,
+        type: selectedProduct.type,
+      };
+      localStorage.setItem("selectedProduct", JSON.stringify(productToStore));
+    }
   };
 
   return (
@@ -51,113 +114,67 @@ const Dadosfiscais = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className={styles.dropdownContainer}>
-          <label htmlFor="cupomTypeDropdown">Categoria</label>
+          <label htmlFor="categoryDropdown">Categoria</label>
           <select
-            id="cupomTypeDropdown"
+            id="categoryDropdown"
             value={Category}
             onChange={(e) => setCategory(e.target.value)}
           >
             <option value="">Selecionar</option>
-            <option value="Porcentagem">ANEIS</option>
+            {categoryOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <div className={styles.dropdownContainer}>
-          <label htmlFor="cupomTypeDropdown">Tipo de produto</label>
+          <label htmlFor="productTypeDropdown">Tipo de produto</label>
           <select
-            id="cupomTypeDropdown"
+            id="productTypeDropdown"
             value={ProductType}
             onChange={(e) => setProductType(e.target.value)}
           >
             <option value="">Selecionar</option>
-            <option value="Porcentagem">Personalizável</option>
+            {productTypeOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
       </div>
       <div className={styles.radiobutton}>
-        <label>
-          <input
-            type="radio"
-            name="radioGroup"
-            value="option1"
-            checked={selectedRadioButton === 'option1'}
-            onChange={() => handleRadioButtonChange('option1')}
-          />
-          <img
-            src="/Anel.svg" // Substitua pelo caminho real da sua imagem
-            alt="Option 1"
-            className={styles.radioImage}
-          />
-          <span
-            className={`${styles.labelText} ${
-              selectedRadioButton === 'option1' ? styles.selectedText : ''
-            }`}
-          >
-            Anel de ouro redondo
-          </span>
-          {selectedRadioButton === 'option1' && (
-            <img
-              src="/CheckPurple.svg" // Substitua pelo caminho real da sua imagem
-              alt="Checkmark"
-              className={styles.checkmark}
+        {filteredItems.map((option) => (
+          <label key={option.value}>
+            <input
+              type="radio"
+              name="radioGroup"
+              value={option.value}
+              checked={selectedRadioButton === option.value}
+              onChange={() => handleRadioButtonChange(option.value)}
             />
-          )}
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="radioGroup"
-            value="option2"
-            checked={selectedRadioButton === 'option2'}
-            onChange={() => handleRadioButtonChange('option2')}
-          />
-          <img
-            src="/Pulseira.svg" // Substitua pelo caminho real da sua imagem
-            alt="Option 2"
-            className={styles.radioImage}
-          />
-          <span
-            className={`${styles.labelText} ${
-              selectedRadioButton === 'option2' ? styles.selectedText : ''
-            }`}
-          >
-            Pulseira de ouro
-          </span>
-          {selectedRadioButton === 'option2' && (
             <img
-              src="/CheckPurple.svg" // Substitua pelo caminho real da sua imagem
-              alt="Checkmark"
-              className={styles.checkmark}
+              src={option.imageSrc}
+              alt={option.label}
+              className={styles.radioImage}
             />
-          )}
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="radioGroup"
-            value="option3"
-            checked={selectedRadioButton === 'option3'}
-            onChange={() => handleRadioButtonChange('option3')}
-          />
-          <img
-            src="/Pingente.svg" // Substitua pelo caminho real da sua imagem
-            alt="Option 3"
-            className={styles.radioImage}
-          />
-          <span
-            className={`${styles.labelText} ${
-              selectedRadioButton === 'option3' ? styles.selectedText : ''
-            }`}
-          >
-            Pingente de ouro
-          </span>
-          {selectedRadioButton === 'option3' && (
-            <img
-              src="/CheckPurple.svg" // Substitua pelo caminho real da sua imagem
-              alt="Checkmark"
-              className={styles.checkmark}
-            />
-          )}
-        </label>
+            <span
+              className={`${styles.labelText} ${
+                selectedRadioButton === option.value ? styles.selectedText : ""
+              }`}
+            >
+              {option.label}
+            </span>
+            {selectedRadioButton === option.value && (
+              <img
+                src="/CheckPurple.svg"
+                alt="Checkmark"
+                className={styles.checkmark}
+              />
+            )}
+          </label>
+        ))}
       </div>
     </div>
   );

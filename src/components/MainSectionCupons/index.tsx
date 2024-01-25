@@ -1,5 +1,8 @@
-import Link from 'next/link';
-import styles from './styles.module.scss';
+import { collection, getDocs } from "firebase/firestore";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { db } from "../../../firebase";
+import styles from "./styles.module.scss";
 
 interface MainSectionProps {
   title: string;
@@ -7,7 +10,45 @@ interface MainSectionProps {
   children?: React.ReactNode;
 }
 
+interface Cupom {
+  id: string;
+  name: string;
+  type: string;
+  value: string;
+  count: number;
+}
+
 const MainSection = ({ title, description, children }: MainSectionProps) => {
+  const [cupons, setCupons] = useState<Cupom[]>([]);
+
+  useEffect(() => {
+    const fetchCupons = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "COUPONS"));
+        const cuponsData: Cupom[] = [];
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const cupom: Cupom = {
+            id: doc.id,
+            name: data.name,
+            type: data.type,
+            value: data.value,
+            count: data.count,
+          };
+
+          cuponsData.push(cupom);
+        });
+
+        setCupons(cuponsData);
+      } catch (error) {
+        console.error("Erro ao buscar os cupons:", error);
+      }
+    };
+
+    fetchCupons();
+  }, []);
+
   return (
     <main className={styles.container}>
       <div className={styles.titleWrapper}>
@@ -16,7 +57,7 @@ const MainSection = ({ title, description, children }: MainSectionProps) => {
           {description && <h3>{description}</h3>}
         </div>
         <div className={styles.button}>
-          <Link href={'/adicionar-cupom'}>
+          <Link href={"/adicionar-cupom"}>
             <button>
               <img src="PlusCircle.svg" alt="" />
               Novo Cupom
@@ -42,16 +83,18 @@ const MainSection = ({ title, description, children }: MainSectionProps) => {
         </header>
 
         {/* Sample table row */}
-        <section className={styles.tableRow}>
-          <p>ABC123</p>
-          <p>10%</p>
-          <p>50</p>
-          <div className={styles.rowIcons}>
-            <img src="Linkpurple.svg" alt="" />
-            <img src="PencilSimple.svg" alt="" />
-            <img src="TrashSimple.svg" alt="" />
-          </div>
-        </section>
+        {cupons.map((cupom) => (
+          <section key={cupom.id} className={styles.tableRow}>
+            <p>{cupom.name}</p>
+            <p>{cupom.value}</p>
+            <p>{cupom.count}</p>
+            <div className={styles.rowIcons}>
+              <img src="Linkpurple.svg" alt="" />
+              <img src="PencilSimple.svg" alt="" />
+              <img src="TrashSimple.svg" alt="" />
+            </div>
+          </section>
+        ))}
 
         {/* Add more table rows as needed */}
       </div>

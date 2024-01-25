@@ -1,21 +1,18 @@
+import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
 import MainSection from "@/components/MainSectionCreate";
 import Steps, { StepData } from "@/components/StepsProducts";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { Sidebar, XCircle } from "phosphor-react";
+import { XCircle } from "phosphor-react";
 import { ReactElement, useState } from "react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { NextPageWithLayout } from "./_app";
-import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
-import DeleteAccount from "@/components/Steps/Myaccount/DeleteAccount";
+
+import RightSidebar2 from "@/components/RightSidebar/ProductSidebar";
 import ChooseProduct from "@/components/StepsProducts/ChooseProduct";
 import ImageSelect from "@/components/StepsProducts/ImageSelect";
 import TextStep from "@/components/StepsProducts/TextStep";
-import LayerStep from "@/components/StepsProducts/LayerStep";
-import PlusIcon from "@/Icons/PlusIcon";
-import RightSidebar2 from "@/components/RightSidebar/ProductSidebar";
-import ActivateIntegrationsStep from "@/components/StepsProducts/ImageSelect";
 
 const CriarLoja: NextPageWithLayout = () => {
   const [email, setEmail] = useState("");
@@ -127,33 +124,33 @@ const CriarLoja: NextPageWithLayout = () => {
           onClick: handlePreviousStep,
         },
         {
-          label: "Próximo",
-          variant: "secondary",
-          icon: <FloppyDiskIcon />,
-          onClick: handleNextStep,
-        },
-      ],
-    },
-    {
-      id: "finish-register",
-      title: "Camadas",
-      description: "Altere, edite ou remova uma camada",
-
-      content: <LayerStep />,
-      actions: [
-        {
-          label: "Cancelar",
-          onClick: handlePreviousStep,
-          variant: "primary",
-        },
-        {
-          label: "Adicionar Produto",
+          label: "Adicionar produto",
           variant: "secondary",
           icon: <FloppyDiskIcon />,
           onClick: handleOpenModal,
         },
       ],
     },
+    // {
+    //   id: "finish-register",
+    //   title: "Camadas",
+    //   description: "Altere, edite ou remova uma camada",
+
+    //   content: <LayerStep />,
+    //   actions: [
+    //     {
+    //       label: "Cancelar",
+    //       onClick: handlePreviousStep,
+    //       variant: "primary",
+    //     },
+    //     {
+    //       label: "Adicionar Produto",
+    //       variant: "secondary",
+    //       icon: <FloppyDiskIcon />,
+    //       onClick: handleOpenModal,
+    //     },
+    //   ],
+    // },
   ];
 
   return (
@@ -166,6 +163,7 @@ const CriarLoja: NextPageWithLayout = () => {
         />
       )}
       <MainSection title="Criar produto">
+        <ToastContainer />
         <Steps
           steps={steps}
           activeStep={activeStep}

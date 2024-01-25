@@ -1,21 +1,21 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import MagicWandIcon from '@/Icons/MagicWandIcon';
-import Button from '@/components/Buttons/Button';
-import ImageInput from '@/components/Inputs/ImageInputAlterar';
-import Input from '@/components/Inputs/Input';
-import styles from './styles.module.scss';
+import Input from "@/components/Inputs/Input";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 interface DadosfiscaisProps {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const Dadosfiscais: React.FC<DadosfiscaisProps> = ({ setModalOpen }) => {
-  const [Cupomname, setCupomname] = useState<string>('');
-  const [CupomType, setCupomType] = useState<string>('');
-  const [razaoSocial, setRazaoSocial] = useState<string>('');
+  const [Cupomname, setCupomname] = useState<string>("");
+  const [CupomType, setCupomType] = useState<string>("");
+  const [razaoSocial, setRazaoSocial] = useState<string>("");
 
-  // Additional functions and logic can go here
-  // You can use setModalOpen as needed to control the modal
+  useEffect(() => {
+    localStorage.setItem("Cupomname", Cupomname);
+    localStorage.setItem("CupomType", CupomType);
+    localStorage.setItem("razaoSocial", razaoSocial);
+  }, [Cupomname, CupomType, razaoSocial]);
 
   return (
     <div className={styles.inputcontainer}>
@@ -33,7 +33,7 @@ const Dadosfiscais: React.FC<DadosfiscaisProps> = ({ setModalOpen }) => {
             value={CupomType}
             onChange={(e) => setCupomType(e.target.value)}
           >
-            <option value="">Select type</option>
+            <option value="">Selecione o tipo</option>
             <option value="Porcentagem">Porcentagem</option>
           </select>
         </div>

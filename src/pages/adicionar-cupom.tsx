@@ -1,14 +1,11 @@
-import React, { useState, ReactElement } from "react";
-import MainSection from "@/components/MainSection";
-import Steps, { StepData } from "@/components/StepsCupom";
-import DashboardLayout from "@/layouts/DashboardLayout";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-import { XCircle } from "phosphor-react";
-import { toast } from "react-toastify";
 import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
-import Dadosfiscais from "@/components/StepsCupom/AddCupom";
+import MainSection from "@/components/MainSection";
 import Modal from "@/components/Modal";
+import Steps, { StepData } from "@/components/StepsCupom";
+import Dadosfiscais from "@/components/StepsCupom/AddCupom";
+import DashboardLayout from "@/layouts/DashboardLayout";
+import { useRouter } from "next/router";
+import { ReactElement, useState } from "react";
 import { NextPageWithLayout } from "./_app";
 
 const CriarLoja: NextPageWithLayout = () => {
@@ -21,6 +18,45 @@ const CriarLoja: NextPageWithLayout = () => {
 
   const handleLogin = async () => {
     // ... existing login handling logic
+  };
+
+  const handleCreateCoupom = async () => {
+    const Cupomname = localStorage.getItem("Cupomname");
+    const CupomType = localStorage.getItem("CupomType");
+    const razaoSocial = localStorage.getItem("razaoSocial");
+
+    if (Cupomname && CupomType && razaoSocial) {
+      const coupomData = {
+        name: Cupomname,
+        type: CupomType,
+        value: razaoSocial,
+        count: 0,
+      };
+
+      console.log(coupomData);
+
+      try {
+        const response = await fetch("/api/create-coupom", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(coupomData),
+        });
+
+        if (response.ok) {
+          console.log("Cupom criado com sucesso!");
+          alert("Cupom criado com sucesso!");
+          setModalOpen(false);
+        } else {
+          console.error("Erro ao criar o cupom:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erro ao criar o cupom:", error);
+      }
+    } else {
+      console.error("Dados do cupom não encontrados no localStorage");
+    }
   };
 
   const steps: StepData[] = [
@@ -37,7 +73,7 @@ const CriarLoja: NextPageWithLayout = () => {
           label: "Adicionar",
           variant: "secondary",
           icon: <FloppyDiskIcon />,
-          onClick: () => setModalOpen(true), // Open modal on click
+          onClick: () => handleCreateCoupom(), // Open modal on click
         },
       ],
     },

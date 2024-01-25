@@ -1,13 +1,26 @@
-import { useState, ChangeEvent, DragEvent } from 'react';
-import Button from '@/components/Buttons/Button';
-import styles from './styles.module.scss';
-import MagicWandIcon from '@/Icons/MagicWandIcon';
+import MagicWandIcon from "@/Icons/MagicWandIcon";
+import Button from "@/components/Buttons/Button";
+import { ChangeEvent, DragEvent, useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 const ActivateIntegrationsStep = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedRadioButton, setSelectedRadioButton] = useState<number | null>(
     null
   );
+  const [selectedFont, setSelectedFont] = useState<string>("");
+
+  useEffect(() => {
+    const storedFont = localStorage.getItem("selectedFont");
+    if (storedFont) {
+      setSelectedFont(storedFont);
+      const combinedFonts = [...radioButtonsLeft, ...radioButtonsRight];
+      const storedIndex = combinedFonts.indexOf(storedFont);
+      if (storedIndex !== -1) {
+        setSelectedRadioButton(storedIndex);
+      }
+    }
+  }, []);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -27,40 +40,46 @@ const ActivateIntegrationsStep = () => {
 
   const handleRadioButtonChange = (index: number) => {
     setSelectedRadioButton(index);
+    const font =
+      index < radioButtonsLeft.length
+        ? radioButtonsLeft[index]
+        : radioButtonsRight[index - radioButtonsLeft.length];
+    setSelectedFont(font);
+    localStorage.setItem("selectedFont", font);
   };
 
   const handleUpload = () => {
     if (selectedFile) {
-      console.log('File selected:', selectedFile);
+      console.log("File selected:", selectedFile);
       // Implement your file upload logic
     } else {
-      console.log('No file selected');
+      console.log("No file selected");
     }
 
     if (selectedRadioButton !== null) {
-      console.log('RadioButton selected:', selectedRadioButton);
+      console.log("RadioButton selected:", selectedRadioButton);
       // Implement your logic for the selected radio button
     }
   };
 
   const radioButtonsLeft = [
-    'Roboto',
-    'Arial',
-    'Diplomata',
-    'ERICA ONE',
-    'Arial',
-    'Erica One',
-    'Ephesis',
+    "Roboto",
+    "Arial",
+    "Diplomata",
+    "ERICA ONE",
+    "Arial",
+    "Erica One",
+    "Ephesis",
   ];
 
   const radioButtonsRight = [
-    'Montserrat',
-    'DM SANS',
-    'Ephesis',
-    'Montserrat',
-    'DM sans',
-    'Diplomata',
-    'Montserrat',
+    "Montserrat",
+    "DM SANS",
+    "Ephesis",
+    "Montserrat",
+    "DM sans",
+    "Diplomata",
+    "Montserrat",
   ];
 
   return (

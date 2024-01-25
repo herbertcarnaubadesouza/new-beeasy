@@ -1,5 +1,9 @@
-import Link from 'next/link';
-import styles from './styles.module.scss';
+import Link from "next/link";
+import styles from "./styles.module.scss";
+
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../../../firebase";
 
 interface MainSectionProps {
   title: string;
@@ -7,7 +11,55 @@ interface MainSectionProps {
   children?: React.ReactNode;
 }
 
+interface Product {
+  id: string;
+  title: string;
+  category: string;
+  type: string;
+  tags: string;
+  font: string;
+  description: string;
+  profitMargin: string;
+  totalValue: string;
+  images: string[];
+  createdDate: string;
+}
+
 const MainSection = ({ title, description, children }: MainSectionProps) => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "PRODUCTS"));
+        const productsData: Product[] = [];
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          productsData.push({
+            id: doc.id,
+            title: data.title,
+            category: data.category,
+            type: data.type,
+            tags: data.tags,
+            font: data.font,
+            description: data.description,
+            profitMargin: data.profitMargin,
+            totalValue: data.totalValue,
+            images: data.images,
+            createdDate: data.createdDate,
+          });
+        });
+
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Erro ao buscar os produtos:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <main className={styles.container}>
       <div className={styles.titleWrapper}>
@@ -16,7 +68,7 @@ const MainSection = ({ title, description, children }: MainSectionProps) => {
           {description && <h3>{description}</h3>}
         </div>
         <div className={styles.button}>
-          <Link href={'/criar-produto'}>
+          <Link href={"/criar-produto"}>
             <button>
               <img src="PlusCircle.svg" alt="" />
               Novo Produto
@@ -53,27 +105,28 @@ const MainSection = ({ title, description, children }: MainSectionProps) => {
           </p>
         </header>
 
-        {/* Sample table row */}
-        <section className={styles.tableRow}>
-          <div className={styles.rowIconsLeft}>
-            <img src="AnelRound.svg" alt="" />
-          </div>
-          <p>Anel Dourado</p>
-          <p>Anéis</p>
-          <p>04/10/23 19:11</p>
-          <p>R$12,35</p>
-          <p>R$22,35</p>
-          <p>R$32,70</p>
-          <div className={styles.rowIcons}>
-            <img src="PencilSimple.svg" alt="" />
-            <img src="TrashSimple.svg" alt="" />
-          </div>
-        </section>
+        {products.map((product: Product) => (
+          <section key={product.id} className={styles.tableRow}>
+            <div className={styles.rowIconsLeft}>
+              {/* Renderize a imagem do produto aqui */}
+              <img src={product.images[0]} alt={product.title} />
+            </div>
+            <p>{product.title}</p>
+            <p>{product.category}</p>
+            <p>-</p>
 
-        {/* Add more table rows as needed */}
+            <p>{`R$${product.totalValue}`}</p>
+            <p>{`R$${product.profitMargin}`}</p>
+            <p>{`R$${product.totalValue + product.profitMargin}`}</p>
+            <div className={styles.rowIcons}>
+              <img src="PencilSimple.svg" alt="Editar" />
+              <img src="TrashSimple.svg" alt="Excluir" />
+            </div>
+          </section>
+        ))}
       </div>
 
-      <div className={styles.pagination}>
+      {/* <div className={styles.pagination}>
         <button className={styles.buttonArrow}>
           <img src="/leftArrowPagination.svg" />
         </button>
@@ -81,7 +134,7 @@ const MainSection = ({ title, description, children }: MainSectionProps) => {
         <button className={styles.buttonArrow}>
           <img src="/rightArrowPagination.svg" />
         </button>
-      </div>
+      </div> */}
 
       <div className={styles.content}>{children}</div>
     </main>

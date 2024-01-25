@@ -57,7 +57,7 @@
     }
 
     color: var(--black-500);
-    font-family: 'Outfit';
+    font-family: "Outfit";
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 5.5rem;
@@ -86,11 +86,11 @@
   overflow: visible;
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     width: 100%; // Adjust as needed
     height: 100px; // Adjust as needed for image height
-    background: url('/ImageSelect.svg') no-repeat center center; // Adjust path as needed
+    background: url("/ImageSelect.svg") no-repeat center center; // Adjust path as needed
     background-size: 50%; // Adjust as needed
   }
 
@@ -105,7 +105,7 @@
     position: absolute;
     top: -25px; // Adjust as needed
     right: -25px; // Adjust as needed
-    background: url('/CloseIcon.svg') no-repeat center center;
+    background: url("/CloseIcon.svg") no-repeat center center;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -127,4 +127,9 @@
   grid-template-columns: repeat(2, 1fr); // Creates two columns
   gap: 10px; // Space between grid items
   margin-top: 20px; // Space above the grid
+}
+
+.image {
+  max-height: 16.5rem;
+  border-radius: 10px;
 }
