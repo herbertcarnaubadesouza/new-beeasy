@@ -16,15 +16,25 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const querySnapshot = await getDocs(usersQuery);
 
       let userExists = false;
+      let userData = null;
+
       querySnapshot.forEach((doc) => {
-         const userData = doc.data();
-         if (userData.password === password) {
+         const data = doc.data();
+         if (data.password === password) {
             userExists = true;
+            userData = {
+               docId: doc.id,
+               name: data.name,
+               email: data.email
+            };
          }
       });
 
-      if (userExists) {
-         res.status(200).json({ message: 'Login bem-sucedido' });
+      if (userExists && userData) {
+         res.status(200).json({
+            message: 'Login bem-sucedido',
+            user: userData
+         });
       } else {
          res.status(401).json({ error: 'Credenciais inválidas' });
       }

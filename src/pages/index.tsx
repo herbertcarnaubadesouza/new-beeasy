@@ -30,6 +30,8 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok) {
+        localStorage.setItem("userData", JSON.stringify(data.user));
+
         alert("Logado com sucesso!");
         router.push("/dashboard");
       } else {
