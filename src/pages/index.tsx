@@ -1,11 +1,8 @@
 import Button from "@/components/Buttons/Button";
 import Input from "@/components/Inputs/Input";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { XCircle } from "phosphor-react";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import styles from "../styles/Login.module.scss";
 
 export default function Login() {
@@ -15,29 +12,33 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handleEntrar = () => {
-    router.push("/criar-loja");
-  };
-
   const handleLogin = async () => {
     setIsLoading(true);
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
 
-    if (result?.error) {
-      toast.error("Usuário ou senha inválidos!", {
-        icon: <XCircle size={32} color="#ff3838" weight="fill" />,
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Logado com sucesso!");
+        router.push("/dashboard");
+      } else {
+        alert("O email ou senha estão incorretos!");
+        throw new Error(data.error);
+      }
+    } catch (error) {
+    } finally {
       setIsLoading(false);
-    } else {
-      toast.success("Autenticado com sucesso!", {
-        icon: "🎉",
-      });
-      setIsLoading(false);
-      router.push("/admin/dashboard");
     }
   };
 
@@ -79,7 +80,7 @@ export default function Login() {
               variant="secondary"
               className={styles.button}
               isLoading={isLoading}
-              onClick={handleEntrar}
+              onClick={handleLogin}
             />
           </div>
 

@@ -1,11 +1,8 @@
 import Button from "@/components/Buttons/Button";
 import Input from "@/components/Inputs/Input";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { XCircle } from "phosphor-react";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import styles from "../styles/CriarConta.module.scss";
 
 export default function CriarConta() {
@@ -17,29 +14,48 @@ export default function CriarConta() {
 
   const router = useRouter();
 
-  const handleEntrar = () => {
-    router.push("/criar-loja");
-  };
-
-  const handleLogin = async () => {
+  const handleCreateAccount = async () => {
     setIsLoading(true);
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
 
-    if (result?.error) {
-      toast.error("Usuário ou senha inválidos!", {
-        icon: <XCircle size={32} color="#ff3838" weight="fill" />,
-      });
+    if (password !== confirmPassword) {
+      // toast.error("As senhas não coincidem.");
+      alert("As senhas não coincidem.");
       setIsLoading(false);
-    } else {
-      toast.success("Autenticado com sucesso!", {
-        icon: "🎉",
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/create-account", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // toast.success(data.message);
+        alert(data.message);
+        router.push("/dashboard");
+      } else {
+        throw new Error(data.error);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        // toast.error(error.message);
+        alert(error.message);
+      } else {
+        // toast.error("Ocorreu um erro ao criar a conta.");
+        alert("Ocorreu um erro ao criar a conta.");
+      }
+    } finally {
       setIsLoading(false);
-      router.push("/admin/dashboard");
     }
   };
 
@@ -92,7 +108,7 @@ export default function CriarConta() {
               variant="secondary"
               className={styles.button}
               isLoading={isLoading}
-              onClick={handleEntrar}
+              onClick={handleCreateAccount}
             />
           </div>
 
