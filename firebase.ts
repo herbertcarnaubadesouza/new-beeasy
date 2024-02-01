@@ -23,5 +23,17 @@ const uploadToFirebase = async (file: any) => {
    return await getDownloadURL(storageRef);
 };
 
-export { app, auth, db, storage, uploadToFirebase };
+const uploadLogoToFirebase = async (file: File) => {
+   const storageRef = ref(storage, `storeLogos/${file.name}`);
+   await uploadBytesResumable(storageRef, file);
+   return await getDownloadURL(storageRef);
+};
+
+const uploadBannerToFirebase = async (file: File) => {
+   const storageRef = ref(storage, `storeBanner/${file.name}`);
+   await uploadBytesResumable(storageRef, file);
+   return await getDownloadURL(storageRef);
+};
+
+export { app, auth, db, storage, uploadBannerToFirebase, uploadLogoToFirebase, uploadToFirebase };
 

@@ -1,15 +1,30 @@
-import { useState, ChangeEvent, DragEvent } from 'react';
-import VideoIcon from '@/Icons/VideoIcon';
-import Button from '@/components/Buttons/Button';
-import CardButton from '@/components/Buttons/CardButton';
-import styles from './styles.module.scss';
+import { ChangeEvent, DragEvent, useState } from "react";
+import { uploadBannerToFirebase } from "../../../../../firebase";
+import styles from "./styles.module.scss";
 
 const ActivateIntegrationsStep = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<string>("");
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    setSelectedFile(file || null);
+    if (file) {
+      setSelectedFile(file);
+      setUploadStatus("Enviando...");
+      try {
+        const downloadURL = await uploadBannerToFirebase(file);
+        localStorage.setItem("storeBannerURL", downloadURL);
+        console.log("Banner uploaded successfully. URL:", downloadURL);
+        setUploadStatus(`Enviado com sucesso: ${file.name}`);
+      } catch (error) {
+        console.error("Error uploading banner:", error);
+        setUploadStatus("Erro ao enviar o arquivo.");
+        // Tratamento de erro adicional, se necessário
+      }
+    } else {
+      setSelectedFile(null);
+      setUploadStatus("");
+    }
   };
 
   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -23,20 +38,10 @@ const ActivateIntegrationsStep = () => {
     setSelectedFile(file || null);
   };
 
-  const handleUpload = () => {
-    // Handle the file upload logic here
-    if (selectedFile) {
-      console.log('File selected:', selectedFile);
-      // Implement your file upload logic
-    } else {
-      console.log('No file selected');
-    }
-  };
-
   return (
-    <div className={styles['step-wrapper']}>
+    <div className={styles["step-wrapper"]}>
       <div
-        className={styles['buttons-container']}
+        className={styles["buttons-container"]}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
@@ -49,7 +54,7 @@ const ActivateIntegrationsStep = () => {
             type="file"
             accept=".pdf, .jpeg, .jpg, .png"
             onChange={handleFileChange}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             id="fileInput"
           />
 
@@ -62,6 +67,13 @@ const ActivateIntegrationsStep = () => {
           Formatos aceitos PDF, JPEG e PNG
         </label>
       </div>
+
+      {selectedFile && (
+        <label className={styles.fileNameLabel}>{selectedFile.name}</label>
+      )}
+      {uploadStatus && (
+        <div className={styles.uploadStatus}>{uploadStatus}</div>
+      )}
     </div>
   );
 };

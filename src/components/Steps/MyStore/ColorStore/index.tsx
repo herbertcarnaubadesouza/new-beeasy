@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 const CreateProductsStep = () => {
-  const [backgroundColor, setBackgroundColor] = useState('#CDD1F9');
-  const [iconColor, setIconColor] = useState('#F70293');
+  const [backgroundColor, setBackgroundColor] = useState("#CDD1F9");
+  const [iconColor, setIconColor] = useState("#F70293");
 
   const handleBackgroundColorChange = (event: {
-    target: { value: React.SetStateAction<string> };
+    target: { value: string };
   }) => {
-    setBackgroundColor(event.target.value);
+    const newBackgroundColor = event.target.value;
+    setBackgroundColor(newBackgroundColor);
+    localStorage.setItem("storeBackgroundColor", newBackgroundColor);
   };
 
-  const handleIconColorChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setIconColor(event.target.value);
+  const handleIconColorChange = (event: { target: { value: string } }) => {
+    const newIconColor = event.target.value;
+    setIconColor(newIconColor);
+    localStorage.setItem("storeIconColor", newIconColor);
   };
 
   const handleBackgroundHexChange = (event: { target: { value: any } }) => {
     const hexValue = event.target.value;
     setBackgroundColor(hexValue);
+    localStorage.setItem("storeBackgroundColor", hexValue);
   };
 
   const handleIconHexChange = (event: { target: { value: any } }) => {
     const hexValue = event.target.value;
     setIconColor(hexValue);
+    localStorage.setItem("storeIconColor", hexValue);
   };
 
   return (
-    <div className={styles['step-wrapper']}>
-      <div className={styles['buttons-container']}>
+    <div className={styles["step-wrapper"]}>
+      <div className={styles["buttons-container"]}>
         <div className={styles.selectcolor}>
           <div className={styles.top}>
             <input

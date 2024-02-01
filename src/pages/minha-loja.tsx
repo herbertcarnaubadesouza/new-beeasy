@@ -1,4 +1,10 @@
+import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
 import MainSection from "@/components/MainSection";
+import StoreModal from "@/components/Modal/ModalStore";
+import BannerImage from "@/components/Steps/MyStore/BannerImage";
+import ColorStore from "@/components/Steps/MyStore/ColorStore";
+import Dadosiniciais from "@/components/Steps/MyStore/Dadosiniciais";
+import SocialMidia from "@/components/StepsCupom/MyStore/SocialMidia";
 import Steps, { StepData } from "@/components/StepsMystore";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { signIn } from "next-auth/react";
@@ -7,16 +13,6 @@ import { XCircle } from "phosphor-react";
 import { ReactElement, useState } from "react";
 import { toast } from "react-toastify";
 import { NextPageWithLayout } from "./_app";
-import FloppyDiskIcon from "@/Icons/FloppyDiskIcon";
-import ActivateIntegrationsStep from "@/components/Steps/SetupStore/ActivateIntegrationsStep";
-import CreateProductsStep from "@/components/Steps/SetupStore/CreateProductsStep";
-import CreateStoreStep from "@/components/Steps/SetupStore/CreateStoreStep";
-import FinishRegisterStep from "@/components/Steps/SetupStore/FinishRegisterStep";
-import Dadosiniciais from "@/components/Steps/MyStore/Dadosiniciais";
-import ColorStore from "@/components/Steps/MyStore/ColorStore";
-import BannerImage from "@/components/Steps/MyStore/BannerImage";
-import SocialMidia from "@/components/StepsCupom/MyStore/SocialMidia";
-import StoreModal from "@/components/Modal/ModalStore";
 
 const CriarLoja: NextPageWithLayout = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +20,45 @@ const CriarLoja: NextPageWithLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeStep, setActiveStep] = useState("create-store");
+
+  const [storeName, setStoreName] = useState(
+    localStorage.getItem("storeName") || ""
+  );
+  const [storeDescription, setStoreDescription] = useState(
+    localStorage.getItem("storeDescription") || ""
+  );
+  const [storeBannerURL, setStoreBannerURL] = useState(
+    localStorage.getItem("storeBannerURL") || ""
+  );
+  const [storeBackgroundColor, setStoreBackgroundColor] = useState(
+    localStorage.getItem("storeBackgroundColor") || ""
+  );
+  const [storeIconColor, setStoreIconColor] = useState(
+    localStorage.getItem("storeIconColor") || ""
+  );
+  const [storeLogoURL, setStoreLogoURL] = useState(
+    localStorage.getItem("storeLogoURL") || ""
+  );
+  const [facebookURL, setFacebookURL] = useState(
+    localStorage.getItem("storeFacebook") || ""
+  );
+  const [instagramURL, setInstagramURL] = useState(
+    localStorage.getItem("storeInstagram") || ""
+  );
+  const [twitterURL, setTwitterURL] = useState(
+    localStorage.getItem("storeTwitter") || ""
+  );
+  const [youtubeURL, setYoutubeURL] = useState(
+    localStorage.getItem("storeYoutube") || ""
+  );
+  const [tikTokURL, setTikTokURL] = useState(
+    localStorage.getItem("storeTikTok") || ""
+  );
+  const [userId, setUserId] = useState(
+    localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData") || "{}").docId
+      : ""
+  );
 
   const handleNextStep = () => {
     const currentStepIndex = steps.findIndex((step) => step.id === activeStep);
@@ -42,8 +77,41 @@ const CriarLoja: NextPageWithLayout = () => {
   };
 
   const handleSave = async () => {
-    // Logic to handle save action
-    setIsModalOpen(true);
+    const storeData = {
+      userId,
+      name: storeName,
+      description: storeDescription,
+      bannerURL: storeBannerURL,
+      logoURL: storeLogoURL,
+      backgroundColor: storeBackgroundColor,
+      iconColor: storeIconColor,
+      socialMedia: {
+        facebook: facebookURL,
+        instagram: instagramURL,
+        twitter: twitterURL,
+        youtube: youtubeURL,
+        tiktok: tikTokURL,
+      },
+    };
+
+    try {
+      const response = await fetch("/api/create-store", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(storeData),
+      });
+
+      if (response.ok) {
+        alert("Loja criada com sucesso!");
+      } else {
+        alert("Erro ao criar a loja.");
+      }
+    } catch (error) {
+      console.error("Erro ao salvar a loja:", error);
+      toast.error("Erro ao conectar com o servidor.");
+    }
   };
 
   const handleCloseModal = () => {
